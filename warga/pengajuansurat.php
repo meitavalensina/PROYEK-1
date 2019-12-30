@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    if( isset($_SESSION['username']) ){
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -214,3 +219,14 @@
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+    }else{
+        echo "
+            <script>
+                alert('Anda harus login!');
+            </script>
+        ";
+        header('Location: ../index.php');
+    }
+?>

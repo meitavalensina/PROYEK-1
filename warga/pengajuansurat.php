@@ -136,12 +136,48 @@
               <form role="form" id="quickForm">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <label for="Masukan nama">Nama Lengkap</label>
+                    <input type="text" name="nama" class="form-control" id="Masukan nama" placeholder="Masukan nama">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="Masukan nik">NIK</label>
+                    <input type="text" name="nik" class="form-control" id="Masukan nik" placeholder="Masukan nik">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Tempat tanggal lahir">Tempat tanggal lahir</label>
+                    <input type="text" name="tempat tanggal lahir" class="form-control" id="Masukan Tempat tanggal lahir" placeholder="Masukan Tempat tanggal lahir">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Agama">Agama</label>
+                    <input type="text" name="agama" class="form-control" id="Masukan Agama" placeholder="Masukan Agama">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Jenis Kelamin">Jenis Kelamin</label>
+                    <input type="text" name="Jenis Kelamin" class="form-control" id="Masukan Jenis Kelamin" placeholder="Masukan Jenis Kelamin">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Status Perkawinan">Status Perkawinan</label>
+                    <input type="text" name="Status Perkawinan" class="form-control" id="Masukan Status Perkawinan" placeholder="Masukan Status Perkawinan">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Pekerjaan">Pekerjaan</label>
+                    <input type="text" name="Pekerjaan" class="form-control" id="Masukan Pekerjaan" placeholder="Masukan Pekerjaan">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Penghasilan Perbulan">Penghasilan Perbulan</label>
+                    <input type="text" name="Penghasilan Perbulan" class="form-control" id="Masukan Penghasilan Perbulan" placeholder="Masukan Penghasilan Perbulan">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Alamat">Alamat</label>
+                    <input type="text" name="Alamat" class="form-control" id="Masukan Alamat" placeholder="Masukan Alamat">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Asal Sekolah">Asal Sekolah</label>
+                    <input type="text" name="Asal Sekolah" class="form-control" id="Masukan Asal Sekolah" placeholder="Masukan Asal Sekolah">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Untuk melanjutkan">Untuk Melanjutkan</label>
+                    <input type="text" name="Untuk melanjutkan" class="form-control" id="Masukan Untuk melanjutkan" placeholder="Masukan Untuk melanjutkan">
                   </div>
                   <div class="form-group mb-0">
                     <div class="custom-control custom-checkbox">

@@ -61,7 +61,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: 52748D !important">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #52748D !important">
     <!-- Brand Logo -->
     <a class="brand-link">
       <center><span class="brand-text font-weight-light" style="font-family: Lemon; color: white; font-size: 30px">Ujungaris</span></center>

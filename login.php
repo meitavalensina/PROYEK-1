@@ -1,11 +1,13 @@
 <?php 
 
+include_once "koneksi.php";
+
 if (isset($_POST['login'])) {
 	// mengaktifkan session pada php
 	session_start();
 
 	// menghubungkan php dengan koneksi database
-	include_once "koneksi.php";
+	
 
 	// menangkap data yang dikirim dari form login
 	$username = $_POST['username'];
@@ -14,7 +16,7 @@ if (isset($_POST['login'])) {
 
 
 	// menyeleksi data user dengan username dan password yang sesuai
-	$login = mysqli_query($mysqli,"SELECT * FROM user where username='$username' and password='$password'");
+	$login = mysqli_query($mysqli,"SELECT * FROM penduduk where username='$username' and password='$password'");
 	// menghitung jumlah data yang ditemukan
 	$cek = mysqli_num_rows($login);
 
@@ -32,20 +34,20 @@ if (isset($_POST['login'])) {
 			}
 
 			else {
-				if($data['level']==1){
+				if($data['level']=="admin"){
 					// buat session login dan username
 					$_SESSION['username'] = $username;
 					$_SESSION['nama_user'] = $data['nama_user'];
-					$_SESSION['level'] = 1;
+					$_SESSION['level'] = "admin";
 					// alihkan ke halaman admin
 					header("location:../PROYEK-1/admin/index.php");
 
 				// cek jika user login sebagai warga
-				}else if($data['level']==2){
+				}else if($data['level']=="warga"){
 					// buat session login dan username
 					$_SESSION['username'] = $username;
 					$_SESSION['nama_user'] = $data['nama_user'];
-					$_SESSION['level'] = 2;
+					$_SESSION['level'] = "warga";
 					// alihkan ke halaman warga
 					header("location:../PROYEK-1/warga/index.php");
 				}else{

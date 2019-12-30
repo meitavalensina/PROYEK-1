@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Sistem Booking Pemakaman</title>
+	<title>Sistem informasi Desa Ujungaris</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -42,15 +42,15 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('kuburan.jpg');">
+		<div class="container-login100" style="background-image: url('ujungaris.jpeg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="post" action="login.php">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
 
-					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+					<span class="login100-form-title p-b-34 p-t-27" style="font-size: 30px; text-transform: none;">
+						Login Sistem Informasi Desa Ujungaris
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
@@ -78,11 +78,6 @@
 						</button>
 					</div>
 
-					<div class="text-center p-t-90">
-						<a class="txt1" href="registrasi/index.php">
-							Buat Akun?
-						</a>
-					</div>
 				</form>
 			</div>
 		</div>

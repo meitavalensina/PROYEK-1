@@ -1,7 +1,7 @@
 <?php
 
 $Host = 'localhost';
-$dbName = 'pemakaman';
+$dbName = 'ujungaris';
 $Username = 'root';
 $Password = '';
 

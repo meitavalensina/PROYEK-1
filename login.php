@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
 
 
 	// menyeleksi data user dengan username dan password yang sesuai
-	$login = mysqli_query($mysqli,"SELECT * FROM user where username='$username' and kata_sandi='$password'");
+	$login = mysqli_query($mysqli,"SELECT * FROM user where username='$username' and password='$password'");
 	// menghitung jumlah data yang ditemukan
 	$cek = mysqli_num_rows($login);
 
@@ -32,22 +32,22 @@ if (isset($_POST['login'])) {
 			}
 
 			else {
-				if($data['level']=="admin"){
+				if($data['level']==1){
 					// buat session login dan username
 					$_SESSION['username'] = $username;
 					$_SESSION['nama_user'] = $data['nama_user'];
-					$_SESSION['level'] = "admin";
+					$_SESSION['level'] = 1;
 					// alihkan ke halaman admin
-					header("location:../pemakaman/admin/index.php");
+					header("location:../PROYEK-1/admin/index.php");
 
 				// cek jika user login sebagai warga
-				}else if($data['level']=="warga"){
+				}else if($data['level']==2){
 					// buat session login dan username
 					$_SESSION['username'] = $username;
 					$_SESSION['nama_user'] = $data['nama_user'];
-					$_SESSION['level'] = "warga";
+					$_SESSION['level'] = 2;
 					// alihkan ke halaman warga
-					header("location:../pemakaman/warga/index.php");
+					header("location:../PROYEK-1/warga/index.php");
 				}else{
 					// alihkan ke halaman login kembali
 					echo '<script language="javascript">

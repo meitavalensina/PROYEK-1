@@ -46,10 +46,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="nav-link" style="color: black !important"><i class="fas fa-user-circle"></i></div>
+      <li class="nav-item">
+        <div class="nav-link">
+          <?php 
+
+          echo $_SESSION['nama_user'];
+          ?>
+        </div>
       </li>
       <li class="nav-item">
         <div class="nav-link">
@@ -133,27 +136,21 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" id="quickForm">
+              <form role="form" id="quickForm" action="proses_pw.php" method="POST" onsubmit="alert('Kirim Pesan Anda?')">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <label for="namaPengguna">Nama Pengguna</label>
+                    <input type="text" name="namap" class="form-control" id="namaPengguna" value="<?php echo $_SESSION['nama_user']; ?>" readonly>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                     <label for="Pengaduan">Isi Pengaduan</label>
+                     <textarea class="form-control" id="Pengaduan" name="isi" rows="3"></textarea>
                   </div>
-                  <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-                    </div>
-                  </div>
+                </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-success" name="submit" value="submit">Kirim</a></button>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
               </form>
             </div>
             <!-- /.card -->

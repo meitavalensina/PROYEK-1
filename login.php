@@ -37,7 +37,7 @@ if (isset($_POST['login'])) {
 				if($data['level']=="admin"){
 					// buat session login dan username
 					$_SESSION['username'] = $username;
-					$_SESSION['nama_user'] = $data['nama_user'];
+					$_SESSION['nama_user'] = $data['Nama'];
 					$_SESSION['level'] = "admin";
 					// alihkan ke halaman admin
 					header("location:../PROYEK-1/admin/index.php");
@@ -46,7 +46,7 @@ if (isset($_POST['login'])) {
 				}else if($data['level']=="warga"){
 					// buat session login dan username
 					$_SESSION['username'] = $username;
-					$_SESSION['nama_user'] = $data['nama_user'];
+					$_SESSION['nama_user'] = $data['Nama'];
 					$_SESSION['level'] = "warga";
 					// alihkan ke halaman warga
 					header("location:../PROYEK-1/warga/index.php");

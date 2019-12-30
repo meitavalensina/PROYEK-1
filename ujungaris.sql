@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2019 at 06:06 AM
+-- Generation Time: Dec 30, 2019 at 02:34 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -54,14 +54,31 @@ CREATE TABLE `kepala_desa` (
 
 CREATE TABLE `penduduk` (
   `id_penduduk` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `Nama` varchar(100) DEFAULT NULL,
+  `Nama` varchar(100) NOT NULL,
   `Nik` varchar(20) NOT NULL,
-  `Jenis_kelamin` varchar(20) DEFAULT NULL,
-  `Tanggal_lahir` varchar(30) DEFAULT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `Jenis_kelamin` varchar(20) NOT NULL,
+  `Tanggal_lahir` date NOT NULL,
+  `Agama` varchar(10) NOT NULL,
   `Pendidikan` varchar(30) NOT NULL,
-  `Pekerjaan` varchar(30) NOT NULL
+  `Pekerjaan` varchar(30) NOT NULL,
+  `Status_perkawinan` varchar(11) NOT NULL,
+  `Status_hub_kel` varchar(15) NOT NULL,
+  `Kewarganegaraan` varchar(3) NOT NULL,
+  `Nama_Ayah` varchar(100) NOT NULL,
+  `Nama_Ibu` varchar(100) NOT NULL,
+  `level` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penduduk`
+--
+
+INSERT INTO `penduduk` (`id_penduduk`, `Nama`, `Nik`, `username`, `password`, `Jenis_kelamin`, `Tanggal_lahir`, `Agama`, `Pendidikan`, `Pekerjaan`, `Status_perkawinan`, `Status_hub_kel`, `Kewarganegaraan`, `Nama_Ayah`, `Nama_Ibu`, `level`) VALUES
+(3, 'Nada Qonita Amalia', '3212074104000001', 'qonita_nada', 'kemudahan14', 'Perempuan', '2000-04-01', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Muzaki', 'Marwiyah', 'admin'),
+(1, 'Lufita Alif Nurjannah', '3212098765489', 'lufita002', 'lufita12', 'Perempuan', '2000-01-12', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', '', '', 'admin'),
+(2, 'Meita Valensina', '3212135005000008', 'valensinam', 'mrezanugrah21', 'Perempuan', '2000-05-10', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Edi', 'Esih Rohaesih', 'admin');
 
 -- --------------------------------------------------------
 
@@ -149,30 +166,6 @@ CREATE TABLE `struktur_organisasi_detail` (
   `tahun_jabatan` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
-  `nama` varchar(30) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `level` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `level`) VALUES
-(1, 'Marwiyah', '3212074809740001', '3212071605100011', 2),
-(2, 'Meita Valensina', 'meita', 'meita21', 1),
-(3, 'Lufita Alif Nurjannah', 'lufita', 'lufita02', 1),
-(4, 'Nada Qonita Amalia', 'nada', 'nada147', 1);
-
 --
 -- Indexes for dumped tables
 --
@@ -194,8 +187,7 @@ ALTER TABLE `kepala_desa`
 -- Indexes for table `penduduk`
 --
 ALTER TABLE `penduduk`
-  ADD PRIMARY KEY (`Nik`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`Nik`);
 
 --
 -- Indexes for table `pengaduan_warga`
@@ -209,8 +201,8 @@ ALTER TABLE `pengaduan_warga`
 --
 ALTER TABLE `pengajuan_surat`
   ADD PRIMARY KEY (`id_ps`),
-  ADD KEY `Nik` (`Nik`),
-  ADD KEY `id_ks` (`id_ks`);
+  ADD KEY `id_ks` (`id_ks`),
+  ADD KEY `Nik` (`Nik`);
 
 --
 -- Indexes for table `perangkat_desa`
@@ -239,22 +231,6 @@ ALTER TABLE `struktur_organisasi_detail`
   ADD KEY `Nik` (`Nik`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- Constraints for dumped tables
 --
 
@@ -263,12 +239,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `kepala_desa`
   ADD CONSTRAINT `kepala_desa_ibfk_1` FOREIGN KEY (`Nik`) REFERENCES `penduduk` (`Nik`);
-
---
--- Constraints for table `penduduk`
---
-ALTER TABLE `penduduk`
-  ADD CONSTRAINT `penduduk_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Constraints for table `pengaduan_warga`
@@ -280,8 +250,8 @@ ALTER TABLE `pengaduan_warga`
 -- Constraints for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  ADD CONSTRAINT `pengajuan_surat_ibfk_2` FOREIGN KEY (`Nik`) REFERENCES `penduduk` (`Nik`),
-  ADD CONSTRAINT `pengajuan_surat_ibfk_3` FOREIGN KEY (`id_ks`) REFERENCES `kategori_surat_sktm` (`id_ks`);
+  ADD CONSTRAINT `pengajuan_surat_ibfk_3` FOREIGN KEY (`id_ks`) REFERENCES `kategori_surat_sktm` (`id_ks`),
+  ADD CONSTRAINT `pengajuan_surat_ibfk_4` FOREIGN KEY (`Nik`) REFERENCES `penduduk` (`Nik`);
 
 --
 -- Constraints for table `perangkat_desa`

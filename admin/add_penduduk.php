@@ -207,29 +207,9 @@ else{
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
                 </div>
               </form>
-              <?php
-              // Check If form submitted, insert form data into users table.
-              if(isset($_POST['submit'])) {
-                  $nama=$_POST['nama'];
-                  $nik=$_POST['nik'];
-                  $jk=$_POST['jk'];
-                  $tgl=$_POST['tgl'];
-                  $pendidikan=$_POST['pendidikan'];
-                  $pekerjaan=$_POST['pekerjaan'];
-
-                  // include database connection file
-                  include_once("../koneksi.php");
-
-                  // Insert user data into table
-                  $result = mysqli_query($mysqli, "INSERT INTO penduduk(Nama, Nik, Jenis_kelamin, Tanggal_lahir, Pendidikan, Pekerjaan) VALUES ('$nama','$nik','$jk','$tgl','$pendidikan','$pekerjaan')");
-
-                  // Show message when user added
-                  echo "User added successfully. <a href='kependudukan.php'>View Users</a>";
-              }
-              ?>
             </div>
             <!-- /.card -->
             </div>

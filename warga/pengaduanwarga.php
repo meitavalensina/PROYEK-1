@@ -109,11 +109,8 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+          <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item active">Pengaduan Warga</li>
             </ol>
@@ -148,7 +145,7 @@
                   </div>
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-success" name="submit" value="submit">Kirim</a></button>
+                  <button type="submit" class="btn btn-primary" name="submit" value="submit">Kirim</a></button>
                 </div>
                 <!-- /.card-body -->
               </form>

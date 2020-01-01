@@ -2,14 +2,16 @@
 
 include_once("../koneksi.php");
 
-if (isset($_POST['Cari'])) {
+session_start();
+
+if (isset($_SESSION['username'])){
+  if (isset($_POST['Cari'])) {
     $Cari=$_POST['Cari'];
     $result = mysqli_query($mysqli, "SELECT * FROM penduduk WHERE Nik like '%".$Cari."%' OR Nama like '%".$Cari."%'");
-}
-
-else{
+  }
+  else{
     $result = mysqli_query($mysqli, "SELECT * FROM penduduk");
-}
+  }
 
 ?>
 
@@ -56,10 +58,13 @@ else{
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="nav-link" style="color: black !important"><i class="fas fa-user-circle"></i></div>
+      <li class="nav-item">
+        <div class="nav-link">
+          <?php 
+
+          echo $_SESSION['nama_user']."(admin)";
+          ?>
+        </div>
       </li>
       <li class="nav-item">
         <div class="nav-link">
@@ -130,7 +135,7 @@ else{
           <li class="nav-item has-treeview">
             <a href="pewarga.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p style="color: white !important">Pengaduan Warga</p>
+              <p style="color: white !important">Data Pengaduan Warga</p>
             </a>
           </li>
         </ul>
@@ -166,14 +171,14 @@ else{
             <div class="card-title">
               <form method="post">
                 <div class="input-group p-3">
-                  <input class="form-control" type="text" placeholder="Cari penduduk" name="Cari" required 
+                  <input class="form-control" type="text" placeholder="Cari penduduk..." name="Cari" required 
                     <?php 
                     if(isset($_POST['Cari'])){
                         echo "value='".$_POST['Cari']."'";
                     }
                     ?>>
                   <div class="input-group-prepend">
-                    <input class="btn btn-primary btn-sm" type="submit" value="Cari" style="background-color: #52748D !important">
+                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
                   </div>
               </div>
             </form>
@@ -184,7 +189,7 @@ else{
                   <h3 class="card-title">Kependudukan</h3>
                 </div>
                 <div class="col-6 p-0 text-right">
-                  <a href="add_penduduk.php" style="color: white;" class="btn btn-info btn-sm">Tambah Data</a>
+                  <a href="add_penduduk.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
                 </div>
               </div>
             </div>
@@ -200,7 +205,7 @@ else{
                   <th>Tanggal Lahir</th>
                   <th>Pendidikan</th>
                   <th>Pekerjaan</th>
-                  <th>Aksi</th>
+                  <th>Edit/Hapus Data</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -216,7 +221,7 @@ else{
                     echo "<td>".$user_data['Tanggal_lahir']."</td>"; 
                     echo "<td>".$user_data['Pendidikan']."</td>"; 
                     echo "<td>".$user_data['Pekerjaan']."</td>";    
-                    echo "<td><a href='edit.php?id_penduduk=$user_data[id_penduduk]'>Edit</a> | <a href='delete.php?id_penduduk=$user_data[id_penduduk]'>Delete</a></td></tr>";
+                    echo "<td><a href='edit.php?id_penduduk=$user_data[id_penduduk]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='delete.php?id_penduduk=$user_data[id_penduduk]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
                     $No++;
                 }
                 ?>
@@ -283,3 +288,14 @@ else{
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+    }else{
+        echo "
+            <script>
+                alert('Anda harus login!');
+            </script>
+        ";
+        header('Location: ../index.php');
+    }
+?>

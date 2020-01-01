@@ -2,14 +2,8 @@
 
 include_once("../koneksi.php");
 
-if (isset($_POST['Cari'])) {
-    $Cari=$_POST['Cari'];
-    $result = mysqli_query($mysqli, "SELECT * FROM penduduk WHERE Nik like '%".$Cari."%' OR Nama like '%".$Cari."%'");
-}
-
-else{
-    $result = mysqli_query($mysqli, "SELECT * FROM penduduk");
-}
+session_start();
+if( isset($_SESSION['username']) ){
 
 ?>
 
@@ -56,10 +50,13 @@ else{
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="nav-link" style="color: black !important"><i class="fas fa-user-circle"></i></div>
+      <li class="nav-item">
+        <div class="nav-link">
+          <?php 
+
+          echo $_SESSION['nama_user']."(admin)";
+          ?>
+        </div>
       </li>
       <li class="nav-item">
         <div class="nav-link">
@@ -130,7 +127,7 @@ else{
           <li class="nav-item has-treeview">
             <a href="pewarga.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p style="color: white !important">Pengaduan Warga</p>
+              <p style="color: white !important">Data Pengaduan Warga</p>
             </a>
           </li>
         </ul>
@@ -165,13 +162,13 @@ else{
           <!-- left column -->
           <div class="col-md-12">
             <!-- jquery validation -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Tambah Penduduk</h3>
+            <div class="card">
+              <div class="card-header"  style="background-color: #52748D !important">
+                <h3 class="card-title" style="color: white">Tambah Penduduk</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" id="quickForm" method="post" action="proses_add.php">
+              <form role="form" id="quickForm" method="post" action="proses_add_kp.php">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="IsiNama">Nama Lengkap</label>
@@ -207,7 +204,7 @@ else{
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
+                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="submit">Tambah</button>
                 </div>
               </form>
             </div>
@@ -274,3 +271,14 @@ else{
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+    }else{
+        echo "
+            <script>
+                alert('Anda harus login!');
+            </script>
+        ";
+        header('Location: ../index.php');
+    }
+?>

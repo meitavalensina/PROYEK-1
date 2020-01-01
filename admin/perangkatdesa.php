@@ -1,3 +1,19 @@
+<?php
+
+include_once("../koneksi.php");
+
+session_start();
+if( isset($_SESSION['username']) ){
+  if (isset($_POST['Cari'])) {
+    $Cari=$_POST['Cari'];
+    $result = mysqli_query($mysqli, "SELECT * FROM perangkat_desa WHERE Nip like '%".$Cari."%'");
+  }
+  else{
+    $result = mysqli_query($mysqli, "SELECT * FROM perangkat_desa");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +57,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="nav-link" style="color: black !important"><i class="fas fa-user-circle"></i></div>
+      <li class="nav-item">
+        <div class="nav-link">
+          <?php 
+
+          echo $_SESSION['nama_user']."(admin)";
+          ?>
+        </div>
       </li>
       <li class="nav-item">
         <div class="nav-link">
@@ -115,7 +134,7 @@
           <li class="nav-item has-treeview">
             <a href="pewarga.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p style="color: white !important">Pengaduan Warga</p>
+              <p style="color: white !important">Data Pengaduan Warga</p>
             </a>
           </li>
         </ul>
@@ -148,11 +167,33 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Perangkat Desa</h3>
+            <div class="card-title">
+              <form method="post">
+                <div class="input-group p-3">
+                  <input class="form-control" type="text" placeholder="Cari..." name="Cari" required 
+                    <?php 
+                    if(isset($_POST['Cari'])){
+                        echo "value='".$_POST['Cari']."'";
+                    }
+                    ?>>
+                  <div class="input-group-prepend">
+                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+                  </div>
+              </div>
+            </form>
+            </div>
+            <div class="card-header border-top">
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="card-title">Perangkat Desa</h3>
+                </div>
+                <div class="col-6 p-0 text-right">
+                  <a href="add_kepdes.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
+                </div>
+              </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body overflow-auto p-0">
+            <div class="card-body overflow-auto p-0" method="post" action="perangkatdesa.php">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -163,39 +204,28 @@
                   <th>Tanggal Lahir</th>
                   <th>Pendidikan</th>
                   <th>Pelatihan</th>
+                  <th>Edit/Hapus Data</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Lufita Alif Nurjanah
-                  </td>
-                  <td>00001999938938</td>
-                  <td> Perempuan</td>
-                  <td>02-01-2000</td>
-                  <td>D3</td>
-                  <td>2025</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Meita Valensina</td>
-                  <td>00908932792482</td>
-                  <td>Perempuan</td>
-                  <td>10-05-2000</td>
-                  <td>D3</td>
-                  <td>2030</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Nada Qonita Amalia</td>
-                  <td>9389724910481</td>
-                  <td>Perempuan</td>
-                  <td>01-04-2000</td>
-                  <td>D3</td>
-                  <td>2027</td>
-                </tr>
+                <?php
+                $No=1;
+                while($user_data = mysqli_fetch_array($result)) {         
+                    echo "<tr>";
+                    echo "<td>".$No."</td>";
+                    // echo "<td>".$user_data['id_penduduk']."</td>";
+                    echo "<td>".$user_data['Nama']."</td>";
+                    echo "<td>".$user_data['Nip']."</td>";
+                    echo "<td>".$user_data['Jenis_kelamin']."</td>";
+                    echo "<td>".$user_data['Tanggal_lahir']."</td>"; 
+                    echo "<td>".$user_data['Pendidikan']."</td>"; 
+                    echo "<td>".$user_data['Pelatihan']."</td>";    
+                    echo "<td><a href='editkepdes.php?id_kepdes=$user_data[id_kepdes]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='deletekepdes.php?id_kepdes=$user_data[id_kepdes]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
+                    $No++;
+                }
+                ?>
                 </tbody>
-              </table>
+              </table><br>
             </div>
             <!-- /.card-body -->
           </div>
@@ -257,3 +287,14 @@
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+    }else{
+        echo "
+            <script>
+                alert('Anda harus login!');
+            </script>
+        ";
+        header('Location: ../index.php');
+    }
+?>

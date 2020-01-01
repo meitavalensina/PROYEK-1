@@ -1,6 +1,10 @@
 <?php
-    session_start();
-    if( isset($_SESSION['username']) ){
+
+include_once("../koneksi.php");
+
+session_start();
+if( isset($_SESSION['username']) ){
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +54,7 @@
         <div class="nav-link">
           <?php 
 
-          echo $_SESSION['nama_user'];
+          echo $_SESSION['nama_user']."(admin)";
           ?>
         </div>
       </li>
@@ -78,22 +82,52 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="index.php" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
+              <p style="color: white !important">Dashboard</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="pengajuansurat.php" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>Pengajuan Surat</p>
+            <a href="kependudukan.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Kependudukan</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="pengaduanwarga.php" class="nav-link">
+            <a href="kepaladesa.php" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p style="color: white !important">Kepala Desa</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="perangkatdesa.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Perangkat Desa</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="strukorgan.php" class="nav-link active" style="background-color: #6D9BBC">
+              <i class="nav-icon fas fa-object-group"></i>
+              <p style="color: white !important">Struktur Organisasi</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="sarpras.php" class="nav-link">
+              <i class="nav-icon fas fa-university"></i>
+              <p style="color: white !important">Sarana & Prasarana</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="dpsurat.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p>Pengaduan Warga</p>
+              <p style="color: white !important">Data Pengajuan Surat</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="pewarga.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p style="color: white !important">Data Pengaduan Warga</p>
             </a>
           </li>
         </ul>
@@ -112,7 +146,8 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item"><a href="strukorgan.php">Struktur Organisasi</a></li>
+              <li class="breadcrumb-item active">Tambah Struktur Organisasi</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -123,39 +158,47 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3><i class="fas fa-table"></i></h3>
-
-                <p>Pengajuan Surat</p>
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card">
+              <div class="card-header" style="background-color: #52748D !important; color: white">
+                <h3 class="card-title">Tambah Struktur Organisasi</h3>
               </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="pengajuansurat.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="quickForm" method="post" action="proses_add_strukor.php">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="IsiNama">Nama Lengkap</label>
+                    <input type="text" name="nama" class="form-control" id="IsiNama" placeholder="Masukkan Nama">
+                  </div>
+                  <div class="form-group">
+                    <label for="IsiJabatan">Jabatan</label>
+                    <input type="text" name="jabatan" class="form-control" id="IsiJabatan" placeholder="Masukkan Jabatan">
+                  </div>
+                  <div class="form-group">
+                    <label for="IsiMJ">Masa Jabatan</label>
+                    <input type="text" name="masaj" class="form-control" id="IsiMJ" placeholder="Masukkan Masa Jabatan">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="submit">Tambah</button>
+                </div>
+              </form>
             </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3><i class="fas fa-table"></i></h3>
-
-                <p>Pengaduan Warga</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="pengaduanwarga.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <!-- /.card -->
             </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
           </div>
-          <!-- ./col -->
+          <!--/.col (right) -->
         </div>
-        <!-- /.row (main row) -->
+        <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

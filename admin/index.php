@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    if( isset($_SESSION['username']) ){
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +46,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="nav-link" style="color: black !important"><i class="fas fa-user-circle"></i></div>
+      <li class="nav-item">
+        <div class="nav-link">
+          <?php 
+
+          echo $_SESSION['nama_user']."(admin)";
+          ?>
+        </div>
       </li>
       <li class="nav-item">
         <div class="nav-link">
@@ -115,7 +123,7 @@
           <li class="nav-item has-treeview">
             <a href="pewarga.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p style="color: white !important">Pengaduan Warga</p>
+              <p style="color: white !important">Data Pengaduan Warga</p>
             </a>
           </li>
         </ul>
@@ -151,7 +159,15 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>150</h3>
+                <?php
+
+                  include_once "../koneksi.php";
+
+                  $qkp=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM penduduk");
+                  $kp=mysqli_fetch_array($qkp);
+
+                  ?>
+                <h3><?php echo $kp['data']; ?></h3>
 
                 <p>Kependudukan</p>
               </div>
@@ -166,7 +182,13 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <?php
+
+                  $qkd=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM kepala_desa");
+                  $kd=mysqli_fetch_array($qkd);
+
+                  ?>
+                <h3><?php echo $kd['data']; ?></h3>
 
                 <p>Kepala Desa</p>
               </div>
@@ -181,7 +203,13 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <?php
+
+                  $qpd=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM perangkat_desa_detail");
+                  $pd=mysqli_fetch_array($qpd);
+
+                  ?>
+                <h3><?php echo $pd['data']; ?></h3>
 
                 <p>Perangkat Desa</p>
               </div>
@@ -196,7 +224,13 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>65</h3>
+                <?php
+
+                  $qso=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM struktur_organisasi_detail");
+                  $so=mysqli_fetch_array($qso);
+
+                  ?>
+                <h3><?php echo $so['data']; ?></h3>
 
                 <p>Struktur Organisasi</p>
               </div>
@@ -210,7 +244,13 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>150</h3>
+                <?php
+
+                  $qsp=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM sarana_prasarana");
+                  $sp=mysqli_fetch_array($qsp);
+
+                  ?>
+                <h3><?php echo $sp['data']; ?></h3>
 
                 <p>Sarana & Prasarana</p>
               </div>
@@ -225,7 +265,13 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>44</h3>
+                <?php
+
+                  $qdps=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM pengajuan_surat");
+                  $dps=mysqli_fetch_array($qdps);
+
+                  ?>
+                <h3><?php echo $dps['data']; ?></h3>
 
                 <p>Data Pengajuan Surat</p>
               </div>
@@ -239,9 +285,15 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>44</h3>
+                <?php
 
-                <p>Pengaduan Warga</p>
+                  $qdpw=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM pengaduan_warga");
+                  $dpw=mysqli_fetch_array($qdpw);
+
+                  ?>
+                <h3><?php echo $dpw['data']; ?></h3>
+
+                <p>Data Pengaduan Warga</p>
               </div>
               <div class="icon">
                 <i class="ion ion-document"></i>
@@ -305,3 +357,14 @@
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+    }else{
+        echo "
+            <script>
+                alert('Anda harus login!');
+            </script>
+        ";
+        header('Location: ../index.php');
+    }
+?>

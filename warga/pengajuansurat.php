@@ -46,10 +46,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="nav-link" style="color: black !important"><i class="fas fa-user-circle"></i></div>
+      <li class="nav-item">
+        <div class="nav-link">
+          <?php 
+
+          echo $_SESSION['nama_user'];
+          ?>
+        </div>
       </li>
       <li class="nav-item">
         <div class="nav-link">
@@ -106,11 +109,8 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+          <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item active">Pengajuan Surat</li>
             </ol>
@@ -136,18 +136,19 @@
               <form role="form" id="quickForm">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="Masukan nama">Nama Lengkap</label>
-                    <input type="text" name="nama" class="form-control" id="Masukan nama" placeholder="Masukan nama">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukan Nama">
                   </div>
                   <div class="form-group">
-                    <label for="Masukan nik">NIK</label>
-                    <input type="text" name="nik" class="form-control" id="Masukan nik" placeholder="Masukan nik">
+                    <label for="nik">NIK</label>
+                    <input type="text" name="nik" class="form-control" id="nik" placeholder="Masukan NIK">
                   </div>
                   <div class="form-group">
-                    <label for="Masukan Tempat tanggal lahir">Tempat tanggal lahir</label>
-                    <input type="text" name="tempat tanggal lahir" class="form-control" id="Masukan Tempat tanggal lahir" placeholder="Masukan Tempat tanggal lahir">
+                    <label for="ttl">Tempat Tanggal Lahir</label>
+                    <input type="text" name="ttl" class="form-control" id="ttl" placeholder="Masukan Tempat Tanggal Lahir">
                   </div>
                   <div class="form-group">
+<<<<<<< HEAD
                     <label for="Masukan Jenis Kelamin">Jenis Kelamin</label>
                     <input type="text" name="Jenis Kelamin" class="form-control" id="Masukan Jenis Kelamin" placeholder="Masukan Jenis Kelamin">
                   </div>
@@ -164,11 +165,43 @@
                       <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
                       <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
                     </div>
+=======
+                    <label for="agama">Agama</label>
+                    <input type="text" name="agama" class="form-control" id="agama" placeholder="Masukan Agama">
+                  </div>
+                  <div class="form-group">
+                    <label for="jk">Jenis Kelamin</label>
+                    <input type="text" name="jk" class="form-control" id="jk" placeholder="Masukan Jenis Kelamin">
+                  </div>
+                  <div class="form-group">
+                    <label for="sp">Status Perkawinan</label>
+                    <input type="text" name="sp" class="form-control" id="sp" placeholder="Masukan Status Perkawinan">
+                  </div>
+                  <div class="form-group">
+                    <label for="pekerjaan">Pekerjaan</label>
+                    <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Masukan Pekerjaan">
+                  </div>
+                  <div class="form-group">
+                    <label for="pb">Penghasilan Perbulan</label>
+                    <input type="text" name="pb" class="form-control" id="pb" placeholder="Masukan Penghasilan Perbulan">
+                  </div>
+                  <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Masukan Alamat">
+                  </div>
+                  <div class="form-group">
+                    <label for="as">Asal Sekolah</label>
+                    <input type="text" name="as" class="form-control" id="as" placeholder="Masukan Asal Sekolah">
+                  </div>
+                  <div class="form-group">
+                    <label for="um">Untuk Melanjutkan</label>
+                    <input type="text" name="um" class="form-control" id="um" placeholder="Masukan Untuk Melanjutkan">
+>>>>>>> 3153863664f67a278597c74a50a3755c727fffc5
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Kirim</button>
                 </div>
               </form>
             </div>

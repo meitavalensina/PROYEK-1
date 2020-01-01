@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2019 at 02:34 PM
+-- Generation Time: Jan 01, 2020 at 04:58 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -21,6 +21,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `ujungaris`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori_sarpras`
+--
+
+CREATE TABLE `kategori_sarpras` (
+  `id_katsp` int(11) NOT NULL,
+  `nama_kategori` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategori_sarpras`
+--
+
+INSERT INTO `kategori_sarpras` (`id_katsp`, `nama_kategori`) VALUES
+(1, 'Sarana Desa'),
+(8, 'Prasarana Pendidikan');
 
 -- --------------------------------------------------------
 
@@ -46,6 +65,14 @@ CREATE TABLE `kepala_desa` (
   `Pelatihan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `kepala_desa`
+--
+
+INSERT INTO `kepala_desa` (`id_kepdes`, `Nik`, `Nip`, `Pelatihan`) VALUES
+(1, '3210778650000861', '1809765', '-'),
+(2, '3212074104000001', '1803052', 'Pramuka');
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +81,7 @@ CREATE TABLE `kepala_desa` (
 
 CREATE TABLE `penduduk` (
   `id_penduduk` int(11) NOT NULL,
+  `no_kk` varchar(20) NOT NULL,
   `Nama` varchar(100) NOT NULL,
   `Nik` varchar(20) NOT NULL,
   `username` varchar(20) NOT NULL,
@@ -68,6 +96,7 @@ CREATE TABLE `penduduk` (
   `Kewarganegaraan` varchar(3) NOT NULL,
   `Nama_Ayah` varchar(100) NOT NULL,
   `Nama_Ibu` varchar(100) NOT NULL,
+  `Alamat` text NOT NULL,
   `level` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -75,10 +104,12 @@ CREATE TABLE `penduduk` (
 -- Dumping data for table `penduduk`
 --
 
-INSERT INTO `penduduk` (`id_penduduk`, `Nama`, `Nik`, `username`, `password`, `Jenis_kelamin`, `Tanggal_lahir`, `Agama`, `Pendidikan`, `Pekerjaan`, `Status_perkawinan`, `Status_hub_kel`, `Kewarganegaraan`, `Nama_Ayah`, `Nama_Ibu`, `level`) VALUES
-(3, 'Nada Qonita Amalia', '3212074104000001', 'qonita_nada', 'kemudahan14', 'Perempuan', '2000-04-01', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Muzaki', 'Marwiyah', 'admin'),
-(1, 'Lufita Alif Nurjannah', '3212098765489', 'lufita002', 'lufita12', 'Perempuan', '2000-01-12', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', '', '', 'admin'),
-(2, 'Meita Valensina', '3212135005000008', 'valensinam', 'mrezanugrah21', 'Perempuan', '2000-05-10', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Edi', 'Esih Rohaesih', 'admin');
+INSERT INTO `penduduk` (`id_penduduk`, `no_kk`, `Nama`, `Nik`, `username`, `password`, `Jenis_kelamin`, `Tanggal_lahir`, `Agama`, `Pendidikan`, `Pekerjaan`, `Status_perkawinan`, `Status_hub_kel`, `Kewarganegaraan`, `Nama_Ayah`, `Nama_Ibu`, `Alamat`, `level`) VALUES
+(5, '3210778650098557', 'H. Tatang Tarkilah', '3210778650000861', 'htatang', 'tatang001', 'Laki-Laki', '1978-01-12', 'Islam', 'SMA/Sederajat', 'Pejabat Desa', 'Kawin', 'Ayah', 'WNI', '', '', 'Blok Tiga', 'warga'),
+(4, '', 'Eva Fadhillah Asriyantie', '3211234098876576', 'evafa', 'zaefar11', 'Perempuan', '1998-05-11', 'Islam', 'SMA/Sederajat', 'Karyawan', 'Belum Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', '', 'warga'),
+(3, '', 'Nada Qonita Amalia', '3212074104000001', 'qonita_nada', 'kemudahan14', 'Perempuan', '2000-04-01', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Muzaki', 'Marwiyah', '', 'admin'),
+(1, '', 'Lufita Alif Nurjannah', '3212098765489', 'lufita002', 'lufita12', 'Perempuan', '2000-01-12', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', '', '', '', 'admin'),
+(2, '', 'Meita Valensina', '3212135005000008', 'valensinam', 'mrezanugrah21', 'Perempuan', '2000-05-10', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Edi', 'Esih Rohaesih', '', 'admin');
 
 -- --------------------------------------------------------
 
@@ -90,8 +121,15 @@ CREATE TABLE `pengaduan_warga` (
   `id_pw` int(11) NOT NULL,
   `Nik` varchar(20) NOT NULL,
   `Pesan` varchar(200) NOT NULL,
-  `tgl_pengaduan_warga` date NOT NULL
+  `tgl_pengaduan_warga` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengaduan_warga`
+--
+
+INSERT INTO `pengaduan_warga` (`id_pw`, `Nik`, `Pesan`, `tgl_pengaduan_warga`) VALUES
+(1, '3211234098876576', 'Pak Kuwu ana kucing ning Gg. H. Zaenudin', '2020-01-01 04:17:50');
 
 -- --------------------------------------------------------
 
@@ -102,8 +140,7 @@ CREATE TABLE `pengaduan_warga` (
 CREATE TABLE `pengajuan_surat` (
   `id_ps` int(11) NOT NULL,
   `Nik` varchar(20) NOT NULL,
-  `id_ks` int(11) NOT NULL,
-  `alamat` varchar(100) NOT NULL
+  `alasan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -139,9 +176,17 @@ CREATE TABLE `perangkat_desa_detail` (
 CREATE TABLE `sarana_prasarana` (
   `id_sarpras` int(11) NOT NULL,
   `Nama` varchar(100) NOT NULL,
-  `Kategori` varchar(50) NOT NULL,
-  `Jumlah` varchar(20) NOT NULL
+  `id_katsp` int(11) NOT NULL,
+  `Jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sarana_prasarana`
+--
+
+INSERT INTO `sarana_prasarana` (`id_sarpras`, `Nama`, `id_katsp`, `Jumlah`) VALUES
+(1, 'Kantor Desa', 1, 1),
+(6, 'Perpustakaan Desa', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -154,6 +199,14 @@ CREATE TABLE `struktur_organisasi` (
   `Jabatan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `struktur_organisasi`
+--
+
+INSERT INTO `struktur_organisasi` (`id_strukor`, `Jabatan`) VALUES
+(1, 'Kepala Desa'),
+(4, 'Sekertaris');
+
 -- --------------------------------------------------------
 
 --
@@ -163,12 +216,26 @@ CREATE TABLE `struktur_organisasi` (
 CREATE TABLE `struktur_organisasi_detail` (
   `id_strukor` int(11) NOT NULL,
   `Nik` varchar(20) NOT NULL,
-  `tahun_jabatan` int(4) NOT NULL
+  `masa_jabatan` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `struktur_organisasi_detail`
+--
+
+INSERT INTO `struktur_organisasi_detail` (`id_strukor`, `Nik`, `masa_jabatan`) VALUES
+(1, '3210778650000861', '2015-2020'),
+(4, '3212074104000001', '2030-2035');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `kategori_sarpras`
+--
+ALTER TABLE `kategori_sarpras`
+  ADD PRIMARY KEY (`id_katsp`);
 
 --
 -- Indexes for table `kategori_surat_sktm`
@@ -201,7 +268,6 @@ ALTER TABLE `pengaduan_warga`
 --
 ALTER TABLE `pengajuan_surat`
   ADD PRIMARY KEY (`id_ps`),
-  ADD KEY `id_ks` (`id_ks`),
   ADD KEY `Nik` (`Nik`);
 
 --
@@ -218,6 +284,13 @@ ALTER TABLE `perangkat_desa_detail`
   ADD KEY `Nik` (`Nik`);
 
 --
+-- Indexes for table `sarana_prasarana`
+--
+ALTER TABLE `sarana_prasarana`
+  ADD PRIMARY KEY (`id_sarpras`),
+  ADD KEY `id_katsp` (`id_katsp`);
+
+--
 -- Indexes for table `struktur_organisasi`
 --
 ALTER TABLE `struktur_organisasi`
@@ -229,6 +302,58 @@ ALTER TABLE `struktur_organisasi`
 ALTER TABLE `struktur_organisasi_detail`
   ADD PRIMARY KEY (`id_strukor`),
   ADD KEY `Nik` (`Nik`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `kategori_sarpras`
+--
+ALTER TABLE `kategori_sarpras`
+  MODIFY `id_katsp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `kategori_surat_sktm`
+--
+ALTER TABLE `kategori_surat_sktm`
+  MODIFY `id_ks` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kepala_desa`
+--
+ALTER TABLE `kepala_desa`
+  MODIFY `id_kepdes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pengaduan_warga`
+--
+ALTER TABLE `pengaduan_warga`
+  MODIFY `id_pw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pengajuan_surat`
+--
+ALTER TABLE `pengajuan_surat`
+  MODIFY `id_ps` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `perangkat_desa_detail`
+--
+ALTER TABLE `perangkat_desa_detail`
+  MODIFY `id_perdes` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sarana_prasarana`
+--
+ALTER TABLE `sarana_prasarana`
+  MODIFY `id_sarpras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `struktur_organisasi_detail`
+--
+ALTER TABLE `struktur_organisasi_detail`
+  MODIFY `id_strukor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -250,7 +375,6 @@ ALTER TABLE `pengaduan_warga`
 -- Constraints for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  ADD CONSTRAINT `pengajuan_surat_ibfk_3` FOREIGN KEY (`id_ks`) REFERENCES `kategori_surat_sktm` (`id_ks`),
   ADD CONSTRAINT `pengajuan_surat_ibfk_4` FOREIGN KEY (`Nik`) REFERENCES `penduduk` (`Nik`);
 
 --
@@ -264,6 +388,12 @@ ALTER TABLE `perangkat_desa`
 --
 ALTER TABLE `perangkat_desa_detail`
   ADD CONSTRAINT `perangkat_desa_detail_ibfk_1` FOREIGN KEY (`Nik`) REFERENCES `penduduk` (`Nik`);
+
+--
+-- Constraints for table `sarana_prasarana`
+--
+ALTER TABLE `sarana_prasarana`
+  ADD CONSTRAINT `sarana_prasarana_ibfk_1` FOREIGN KEY (`id_katsp`) REFERENCES `kategori_sarpras` (`id_katsp`);
 
 --
 -- Constraints for table `struktur_organisasi`

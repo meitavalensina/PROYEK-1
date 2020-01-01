@@ -1,3 +1,20 @@
+<?php
+
+include_once("../koneksi.php");
+
+session_start();
+
+if (isset($_SESSION['username'])){
+  if (isset($_POST['Cari'])) {
+    $Cari=$_POST['Cari'];
+    $result = mysqli_query($mysqli, "SELECT pengaduan_warga.id_pw, penduduk.Nama, penduduk.Nik, pengaduan_warga.Pesan, pengaduan_warga.tgl_pengaduan_warga FROM pengaduan_warga JOIN penduduk ON penduduk.Nik=pengaduan_warga.Nik WHERE Nik like '%".$Cari."%' OR Nama like '%".$Cari."%' OR tgl_pengaduan_warga like '%".$Cari."%'");
+  }
+  else{
+    $result = mysqli_query($mysqli, "SELECT pengaduan_warga.id_pw, penduduk.Nama, penduduk.Nik, pengaduan_warga.Pesan, pengaduan_warga.tgl_pengaduan_warga FROM pengaduan_warga JOIN penduduk ON penduduk.Nik=pengaduan_warga.Nik");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +58,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="nav-link" style="color: black !important"><i class="fas fa-user-circle"></i></div>
+      <li class="nav-item">
+        <div class="nav-link">
+          <?php 
+
+          echo $_SESSION['nama_user']."(admin)";
+          ?>
+        </div>
       </li>
       <li class="nav-item">
         <div class="nav-link">
@@ -115,7 +135,7 @@
           <li class="nav-item has-treeview menu-open">
             <a href="pewarga.php" class="nav-link active" style="background-color: #6D9BBC">
               <i class="nav-icon fas fa-table"></i>
-              <p style="color: white !important">Pengaduan Warga</p>
+              <p style="color: white !important">Data Pengaduan Warga</p>
             </a>
           </li>
         </ul>
@@ -134,7 +154,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Pengaduan Warga</li>
+              <li class="breadcrumb-item active">Data Pengaduan Warga</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -148,11 +168,33 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Pengaduan Warga</h3>
+            <div class="card-title">
+              <form method="post">
+                <div class="input-group p-3">
+                  <input class="form-control" type="text" placeholder="Cari..." name="Cari" required 
+                    <?php 
+                    if(isset($_POST['Cari'])){
+                        echo "value='".$_POST['Cari']."'";
+                    }
+                    ?>>
+                  <div class="input-group-prepend">
+                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+                  </div>
+              </div>
+            </form>
+            </div>
+            <div class="card-header border-top">
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="card-title">Data Pengaduan Warga</h3>
+                </div>
+                <div class="col-6 p-0 text-right">
+                  <a href="add_pewarga.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
+                </div>
+              </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body overflow-auto p-0">
+            <div class="card-body overflow-auto p-0" method="post" action="pewarga.php">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -160,31 +202,26 @@
                   <th>Nama Lengkap</th>
                   <th>NIK</th>
                   <th>Pesan</th>
-                  
+                  <th>Tanggal Pengaduan Warga</th>
+                  <th>Edit/Hapus Data</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Lufita Alif Nurjanah</td>
-                  <td>1803048</td>
-                  <td>Lihat Pesan</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Meita Valensina</td>
-                  <td>1803049</td>
-                  <td>Lihat Pesan</td>
-                 
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Nada Qonita Amalia</td>
-                  <td>1803052</td>
-                  <td>Lihat Pesan</td>
-                </tr>
+                <?php
+                $No=1;
+                while($user_data = mysqli_fetch_array($result)) {         
+                    echo "<tr>";
+                    echo "<td>".$No."</td>";
+                    echo "<td>".$user_data['Nama']."</td>";
+                    echo "<td>".$user_data['Nik']."</td>";
+                    echo "<td>".$user_data['Pesan']."</td>";
+                    echo "<td>".$user_data['tgl_pengaduan_warga']."</td>"; 
+                    echo "<td><a href='edit.php?id_pw=$user_data[id_pw]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='delete.php?id_pw=$user_data[id_pw]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
+                    $No++;
+                }
+                ?>
                 </tbody>
-              </table>
+              </table><br>
             </div>
             <!-- /.card-body -->
           </div>
@@ -193,6 +230,7 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+    </div>
     </section>
     <!-- /.content -->
   </div>
@@ -245,3 +283,14 @@
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+    }else{
+        echo "
+            <script>
+                alert('Anda harus login!');
+            </script>
+        ";
+        header('Location: ../index.php');
+    }
+?>

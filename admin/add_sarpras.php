@@ -5,13 +5,6 @@ include_once("../koneksi.php");
 session_start();
 
 if (isset($_SESSION['username'])){
-  if (isset($_POST['Cari'])) {
-    $Cari=$_POST['Cari'];
-    $result = mysqli_query($mysqli, "SELECT sarana_prasarana.id_sarpras, sarana_prasarana.Nama, kategori_sarpras.nama_kategori, sarana_prasarana.Jumlah FROM sarana_prasarana JOIN kategori_sarpras ON kategori_sarpras.id_katsp=sarana_prasarana.id_katsp WHERE nama_kategori like '%".$Cari."%' OR Nama like '%".$Cari."%'");
-  }
-  else{
-    $result = mysqli_query($mysqli, "SELECT sarana_prasarana.id_sarpras, sarana_prasarana.Nama, kategori_sarpras.nama_kategori, sarana_prasarana.Jumlah FROM sarana_prasarana JOIN kategori_sarpras ON kategori_sarpras.id_katsp=sarana_prasarana.id_katsp");
-  }
 
 ?>
 
@@ -154,7 +147,8 @@ if (isset($_SESSION['username'])){
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Sarana & Prasarana</li>
+              <li class="breadcrumb-item"><a href="sarpras.php">Sarana & Prasarana</a></li>
+              <li class="breadcrumb-item active">Tambah Sarana & Prasarana</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -165,71 +159,48 @@ if (isset($_SESSION['username'])){
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-title">
-              <form method="post">
-                <div class="input-group p-3">
-                  <input class="form-control" type="text" placeholder="Cari..." name="Cari" required 
-                    <?php 
-                    if(isset($_POST['Cari'])){
-                        echo "value='".$_POST['Cari']."'";
-                    }
-                    ?>>
-                  <div class="input-group-prepend">
-                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card">
+              <div class="card-header"  style="background-color: #52748D !important">
+                <h3 class="card-title" style="color: white">Tambah Sarana & Prasarana</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="quickForm" method="post" action="proses_add_sp.php">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="IsiNama">Nama</label>
+                    <input type="text" name="nama" class="form-control" id="IsiNama" placeholder="Masukkan Nama">
                   </div>
-              </div>
-            </form>
-            </div>
-            <div class="card-header border-top">
-              <div class="row">
-                <div class="col-6">
-                  <h3 class="card-title">Sarana & Prasarana</h3>
+                  <div class="form-group">
+                    <label for="IsiKategori">Kategori</label>
+                    <input type="text" name="kategori" class="form-control" id="IsiKategori" placeholder="Masukkan Kategori">
+                  </div>
+                  <div class="form-group">
+                    <label for="IsiJumlah">Jumlah</label>
+                    <input type="number" name="jumlah" class="form-control" id="IsiJumlah" placeholder="Masukkan Jumlah">
+                  </div>
                 </div>
-                <div class="col-6 p-0 text-right">
-                  <a href="add_sarpras.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="submit">Tambah</button>
                 </div>
-              </div>
+              </form>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body overflow-auto p-0" method="post" action="sarpras.php">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>Kategori</th>
-                  <th>Jumlah</th>
-                  <th>Edit/Hapus Data</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $No=1;
-                while($user_data = mysqli_fetch_array($result)) {         
-                    echo "<tr>";
-                    echo "<td>".$No."</td>";
-                    // echo "<td>".$user_data['id_penduduk']."</td>";
-                    echo "<td>".$user_data['Nama']."</td>";
-                    echo "<td>".$user_data['nama_kategori']."</td>"; 
-                    echo "<td>".$user_data['Jumlah']."</td>";    
-                    echo "<td><a href='edit.php?id_sarpras=$user_data[id_sarpras]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='delete.php?id_sarpras=$user_data[id_sarpras]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
-                    $No++;
-                }
-                ?>
-                </tbody>
-              </table><br>
+            <!-- /.card -->
             </div>
-            <!-- /.card-body -->
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
           </div>
-          <!-- /.card -->
+          <!--/.col (right) -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>

@@ -148,6 +148,24 @@
                     <input type="text" name="ttl" class="form-control" id="ttl" placeholder="Masukan Tempat Tanggal Lahir">
                   </div>
                   <div class="form-group">
+<<<<<<< HEAD
+                    <label for="Masukan Jenis Kelamin">Jenis Kelamin</label>
+                    <input type="text" name="Jenis Kelamin" class="form-control" id="Masukan Jenis Kelamin" placeholder="Masukan Jenis Kelamin">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Alamat">Alamat</label>
+                    <input type="text" name="Alamat" class="form-control" id="Masukan Alamat" placeholder="Masukan Alamat">
+                  </div>
+                  <div class="form-group">
+                    <label for="Masukan Alasan">Alasan</label>
+                    <input type="text" name="Alasan" class="form-control" id="Masukan Alasan" placeholder="Masukan Alasan">
+                  </div>
+                  <div class="form-group mb-0">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
+                    </div>
+=======
                     <label for="agama">Agama</label>
                     <input type="text" name="agama" class="form-control" id="agama" placeholder="Masukan Agama">
                   </div>
@@ -178,6 +196,7 @@
                   <div class="form-group">
                     <label for="um">Untuk Melanjutkan</label>
                     <input type="text" name="um" class="form-control" id="um" placeholder="Masukan Untuk Melanjutkan">
+>>>>>>> 3153863664f67a278597c74a50a3755c727fffc5
                   </div>
                 </div>
                 <!-- /.card-body -->

@@ -4,13 +4,6 @@ include_once("../koneksi.php");
 
 session_start();
 if( isset($_SESSION['username']) ){
-  if (isset($_POST['Cari'])) {
-    $Cari=$_POST['Cari'];
-    $result = mysqli_query($mysqli, "SELECT * FROM perangkat_desa WHERE Nip like '%".$Cari."%'");
-  }
-  else{
-    $result = mysqli_query($mysqli, "SELECT * FROM perangkat_desa");
-  }
 
 ?>
 
@@ -107,14 +100,14 @@ if( isset($_SESSION['username']) ){
               <p style="color: white !important">Kepala Desa</p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="perangkatdesa.php" class="nav-link active" style="background-color: #6D9BBC">
+          <li class="nav-item has-treeview">
+            <a href="perangkatdesa.php" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p style="color: white !important">Perangkat Desa</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="strukorgan.php" class="nav-link">
+          <li class="nav-item has-treeview menu-open">
+            <a href="strukorgan.php" class="nav-link active" style="background-color: #6D9BBC">
               <i class="nav-icon fas fa-object-group"></i>
               <p style="color: white !important">Struktur Organisasi</p>
             </a>
@@ -153,7 +146,8 @@ if( isset($_SESSION['username']) ){
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Perangkat Desa</li>
+              <li class="breadcrumb-item"><a href="strukorgan.php">Perangkat Desa</a></li>
+              <li class="breadcrumb-item active">Tambah Perangkat Desa</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -164,77 +158,48 @@ if( isset($_SESSION['username']) ){
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-title">
-              <form method="post">
-                <div class="input-group p-3">
-                  <input class="form-control" type="text" placeholder="Cari..." name="Cari" required 
-                    <?php 
-                    if(isset($_POST['Cari'])){
-                        echo "value='".$_POST['Cari']."'";
-                    }
-                    ?>>
-                  <div class="input-group-prepend">
-                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card">
+              <div class="card-header" style="background-color: #52748D !important; color: white">
+                <h3 class="card-title">Tambah Perangkat Desa</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="quickForm" method="post" action="proses_add_pd.php">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="IsiNama">Nama Lengkap</label>
+                    <input type="text" name="nama" class="form-control" id="IsiNama" placeholder="Masukkan Nama">
                   </div>
-              </div>
-            </form>
-            </div>
-            <div class="card-header border-top">
-              <div class="row">
-                <div class="col-6">
-                  <h3 class="card-title">Perangkat Desa</h3>
+                  <div class="form-group">
+                    <label for="IsiJabatan">Nip</label>
+                    <input type="text" name="nip" class="form-control" id="IsiNip" placeholder="Masukkan NIP">
+                  </div>
+                  <div class="form-group">
+                    <label for="IsiPelatihan">Pelatihan</label>
+                    <input type="text" name="pelatihan" class="form-control" id="IsiPelatihan" placeholder="Masukkan Pelatihan">
+                  </div>
                 </div>
-                <div class="col-6 p-0 text-right">
-                  <a href="add_perdes.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="submit">Tambah</button>
                 </div>
-              </div>
+              </form>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body overflow-auto p-0" method="post" action="perangkatdesa.php">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama Lengkap</th>
-                  <th>NIP</th>
-                  <th>Jenis Kelamin</th>
-                  <th>Tanggal Lahir</th>
-                  <th>Pendidikan</th>
-                  <th>Pelatihan</th>
-                  <th>Edit/Hapus Data</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $No=1;
-                while($user_data = mysqli_fetch_array($result)) {         
-                    echo "<tr>";
-                    echo "<td>".$No."</td>";
-                    // echo "<td>".$user_data['id_penduduk']."</td>";
-                    echo "<td>".$user_data['Nama']."</td>";
-                    echo "<td>".$user_data['Nip']."</td>";
-                    echo "<td>".$user_data['Jenis_kelamin']."</td>";
-                    echo "<td>".$user_data['Tanggal_lahir']."</td>"; 
-                    echo "<td>".$user_data['Pendidikan']."</td>"; 
-                    echo "<td>".$user_data['Pelatihan']."</td>";    
-                    echo "<td><a href='editkepdes.php?id_perdes=$user_data[id_perdes]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='deleteperdes.php?id_perdes=$user_data[id_perdes]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
-                    $No++;
-                }
-                ?>
-                </tbody>
-              </table><br>
+            <!-- /.card -->
             </div>
-            <!-- /.card-body -->
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
           </div>
-          <!-- /.card -->
+          <!--/.col (right) -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>

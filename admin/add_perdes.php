@@ -1,6 +1,10 @@
 <?php
-    session_start();
-    if( isset($_SESSION['username']) ){
+
+include_once("../koneksi.php");
+
+session_start();
+if( isset($_SESSION['username']) ){
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +54,7 @@
         <div class="nav-link">
           <?php 
 
-          echo $_SESSION['nama_user'];
+          echo $_SESSION['nama_user']."(admin)";
           ?>
         </div>
       </li>
@@ -81,19 +85,49 @@
           <li class="nav-item has-treeview">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="pengajuansurat.php" class="nav-link active">
-              <i class="nav-icon fas fa-table"></i>
-              <p>Pengajuan Surat</p>
+              <p style="color: white !important">Dashboard</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="pengaduanwarga.php" class="nav-link">
+            <a href="kependudukan.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Kependudukan</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="kepaladesa.php" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p style="color: white !important">Kepala Desa</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="perangkatdesa.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Perangkat Desa</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="strukorgan.php" class="nav-link active" style="background-color: #6D9BBC">
+              <i class="nav-icon fas fa-object-group"></i>
+              <p style="color: white !important">Struktur Organisasi</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="sarpras.php" class="nav-link">
+              <i class="nav-icon fas fa-university"></i>
+              <p style="color: white !important">Sarana & Prasarana</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="dpsurat.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p>Pengaduan Warga</p>
+              <p style="color: white !important">Data Pengajuan Surat</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="pewarga.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p style="color: white !important">Data Pengaduan Warga</p>
             </a>
           </li>
         </ul>
@@ -112,7 +146,8 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Pengajuan Surat</li>
+              <li class="breadcrumb-item"><a href="strukorgan.php">Perangkat Desa</a></li>
+              <li class="breadcrumb-item active">Tambah Perangkat Desa</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -127,56 +162,30 @@
           <!-- left column -->
           <div class="col-md-12">
             <!-- jquery validation -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Pengajuan Surat</h3>
+            <div class="card">
+              <div class="card-header" style="background-color: #52748D !important; color: white">
+                <h3 class="card-title">Tambah Perangkat Desa</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" id="quickForm" method="POST" action="proses_ps.php">
+              <form role="form" id="quickForm" method="post" action="proses_add_pd.php">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="nama">Nama Lengkap</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukan Nama">
+                    <label for="IsiNama">Nama Lengkap</label>
+                    <input type="text" name="nama" class="form-control" id="IsiNama" placeholder="Masukkan Nama">
                   </div>
                   <div class="form-group">
-                    <label for="nik">NIK</label>
-                    <input type="text" name="nik" class="form-control" id="nik" placeholder="Masukan NIK">
+                    <label for="IsiJabatan">Nip</label>
+                    <input type="text" name="nip" class="form-control" id="IsiNip" placeholder="Masukkan NIP">
                   </div>
                   <div class="form-group">
-<<<<<<< HEAD
-                    <label for="IsiAlasan">Alasan</label>
-                    <textarea type="text" name="alasan" class="form-control" id="IsiAlasan" placeholder="Masukan Alasan Membuat Surat"></textarea>
+                    <label for="IsiPelatihan">Pelatihan</label>
+                    <input type="text" name="pelatihan" class="form-control" id="IsiPelatihan" placeholder="Masukkan Pelatihan">
                   </div>
                 </div>
-=======
-                    <label for="IsiJK">Jenis Kelamin</label>
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <input type="radio" aria-label="Radio button for following text input" name="jk" id="IsiJK" value="Laki-Laki">&nbsp; Laki-Laki
-                        </div>
-                        <div class="input-group-text">
-                          <input type="radio" aria-label="Radio button for following text input" name="jk" id="IsiJK" value="Perempuan">&nbsp; Perempuan
-                        </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="Masukan Alamat">Alamat</label>
-                    <textarea type="text" name="Alamat" class="form-control" id="Masukan Alamat" placeholder="Masukan Alamat"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="Masukan Alasan">Alasan</label>
-                    <textarea type="text" name="Alasan" class="form-control" id="Masukan Alasan" placeholder="Masukan Alasan"></textarea>
-                  </div>
-                  <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-                    </div>
->>>>>>> a84075c49ab1d8e161395ae4cb09f453bba2055f
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Kirim</button>
+                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="submit">Tambah</button>
                 </div>
               </form>
             </div>

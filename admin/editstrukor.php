@@ -3,16 +3,30 @@
 include_once("../koneksi.php");
 
 session_start();
+
 if( isset($_SESSION['username']) ){
-  if (isset($_POST['Cari'])) {
-    $Cari=$_POST['Cari'];
-    $result = mysqli_query($mysqli, "SELECT * FROM perangkat_desa WHERE Nip like '%".$Cari."%'");
-  }
-  else{
-    $result = mysqli_query($mysqli, "SELECT * FROM perangkat_desa");
+  if (isset($_POST['update'])) {
+    $id_strukor=$_POST['id_strukor'];
+    $nama=$_POST['nama'];
+    $jabatan=$_POST['jabatan'];
+    $masaj=$_POST['masaj'];
+
+    $query1=mysqli_query($mysqli, "UPDATE struktur_organisasi_detail SET masa_jabatan='$masaj' WHERE id_strukor='$id_strukor'");
+
+    $query2=mysqli_query($mysqli, "UPDATE struktur_organisasi SET Jabatan='$jabatan' WHERE id_strukor='$id_strukor'");
+
+    header('location:strukorgan.php');
+
   }
 
+  $id_strukor=$_GET['id_strukor'];
+
+  $result=mysqli_query($mysqli, "SELECT struktur_organisasi_detail.id_strukor, penduduk.Nama, penduduk.Jenis_kelamin, struktur_organisasi.Jabatan, struktur_organisasi_detail.masa_jabatan FROM struktur_organisasi_detail JOIN penduduk ON penduduk.Nik=struktur_organisasi_detail.Nik JOIN struktur_organisasi ON struktur_organisasi_detail.id_strukor=struktur_organisasi.id_strukor WHERE struktur_organisasi_detail.id_strukor='$id_strukor'");
+
+  while($strukor = mysqli_fetch_array($result)){
+  
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -108,13 +122,7 @@ if( isset($_SESSION['username']) ){
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="perangkatdesa.php" class="nav-link active" style="background-color: #6D9BBC">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="strukorgan.php" class="nav-link">
+            <a href="strukorgan.php" class="nav-link active" style="background-color: #6D9BBC">
               <i class="nav-icon fas fa-object-group"></i>
               <p style="color: white !important">Struktur Organisasi</p>
             </a>
@@ -153,7 +161,8 @@ if( isset($_SESSION['username']) ){
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Perangkat Desa</li>
+              <li class="breadcrumb-item"><a href="strukorgan.php">Struktur Organisasi</a></li>
+              <li class="breadcrumb-item active">Edit Struktur Organisasi</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -164,83 +173,55 @@ if( isset($_SESSION['username']) ){
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-title">
-              <form method="post">
-                <div class="input-group p-3">
-                  <input class="form-control" type="text" placeholder="Cari..." name="Cari" required 
-                    <?php 
-                    if(isset($_POST['Cari'])){
-                        echo "value='".$_POST['Cari']."'";
-                    }
-                    ?>>
-                  <div class="input-group-prepend">
-                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card">
+              <div class="card-header" style="background-color: #52748D !important; color: white">
+                <h3 class="card-title">Edit Struktur Organisasi</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="quickForm" method="post" action="editstrukor.php">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="IsiNama">Nama</label>
+                    <input type="text" name="nama" class="form-control" id="IsiNama" value="<?php echo $strukor['Nama']; ?>" readonly>
                   </div>
-              </div>
-            </form>
-            </div>
-            <div class="card-header border-top">
-              <div class="row">
-                <div class="col-6">
-                  <h3 class="card-title">Perangkat Desa</h3>
+                  <div class="form-group">
+                    <label for="IsiJabatan">Jabatan</label>
+                    <input type="text" name="jabatan" class="form-control" id="IsiJabatan" value="<?php echo $strukor['Jabatan'];?>" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="IsiMJ">Masa Jabatan</label>
+                    <input type="text" name="masaj" class="form-control" id="IsiMJ" value="<?php echo $strukor['masa_jabatan'];?>" required>
+                  </div>
                 </div>
-                <div class="col-6 p-0 text-right">
-                  <a href="add_kepdes.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <input type="hidden" name="id_strukor" value="<?php echo $strukor['id_strukor'];?>">
+                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="update">Edit</button>
                 </div>
-              </div>
+              </form> <?php } ?>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body overflow-auto p-0" method="post" action="perangkatdesa.php">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama Lengkap</th>
-                  <th>NIP</th>
-                  <th>Jenis Kelamin</th>
-                  <th>Tanggal Lahir</th>
-                  <th>Pendidikan</th>
-                  <th>Pelatihan</th>
-                  <th>Edit/Hapus Data</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $No=1;
-                while($user_data = mysqli_fetch_array($result)) {         
-                    echo "<tr>";
-                    echo "<td>".$No."</td>";
-                    // echo "<td>".$user_data['id_penduduk']."</td>";
-                    echo "<td>".$user_data['Nama']."</td>";
-                    echo "<td>".$user_data['Nip']."</td>";
-                    echo "<td>".$user_data['Jenis_kelamin']."</td>";
-                    echo "<td>".$user_data['Tanggal_lahir']."</td>"; 
-                    echo "<td>".$user_data['Pendidikan']."</td>"; 
-                    echo "<td>".$user_data['Pelatihan']."</td>";    
-                    echo "<td><a href='editkepdes.php?id_kepdes=$user_data[id_kepdes]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='deletekepdes.php?id_kepdes=$user_data[id_kepdes]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
-                    $No++;
-                }
-                ?>
-                </tbody>
-              </table><br>
+            <!-- /.card -->
             </div>
-            <!-- /.card-body -->
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
           </div>
-          <!-- /.card -->
+          <!--/.col (right) -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->

@@ -4,6 +4,22 @@ include_once("../koneksi.php");
 
 session_start();
 if( isset($_SESSION['username']) ){
+  if (isset($_POST['update'])) {
+    $id_kepdes=$_POST['id_kepdes'];
+    $nip=$_POST['nip'];
+    $pelatihan=$_POST['pelatihan'];
+
+    $query=mysqli_query($mysqli, "UPDATE kepala_desa SET Nip='$nip', Pelatihan='$pelatihan' WHERE id_kepdes='$id_kepdes'");
+
+    header('location:kepaladesa.php');
+
+  }
+
+  $id_kepdes=$_GET['id_kepdes'];
+
+  $result=mysqli_query($mysqli, "SELECT kepala_desa.id_kepdes, penduduk.Nama, kepala_desa.Nip, kepala_desa.Pelatihan FROM kepala_desa JOIN penduduk ON penduduk.Nik=kepala_desa.Nik WHERE id_kepdes='$id_kepdes'");
+
+  while($kd = mysqli_fetch_array($result)){
 
 ?>
 
@@ -101,12 +117,6 @@ if( isset($_SESSION['username']) ){
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="perangkatdesa.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
             <a href="strukorgan.php" class="nav-link">
               <i class="nav-icon fas fa-object-group"></i>
               <p style="color: white !important">Struktur Organisasi</p>
@@ -147,7 +157,7 @@ if( isset($_SESSION['username']) ){
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item"><a href="kepaladesa.php">Kepala Desa</a></li>
-              <li class="breadcrumb-item active">Tambah Kepala Desa</li>
+              <li class="breadcrumb-item active">Edit Kepala Desa</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -164,30 +174,31 @@ if( isset($_SESSION['username']) ){
             <!-- jquery validation -->
             <div class="card">
               <div class="card-header" style="background-color: #52748D !important; color: white">
-                <h3 class="card-title">Tambah Kepala Desa</h3>
+                <h3 class="card-title">Edit Kepala Desa</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" id="quickForm" method="post" action="proses_add_kepdes.php">
+              <form role="form" id="quickForm" method="post" action="editkepdes.php">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="IsiNama">Nama Lengkap</label>
-                    <input type="text" name="nama" class="form-control" id="IsiNama" placeholder="Masukkan Nama">
+                    <label for="IsiNama">Nama</label>
+                    <input type="text" name="nama" class="form-control" id="IsiNama" value="<?php echo $kd['Nama']; ?>" readonly>
                   </div>
                   <div class="form-group">
                     <label for="IsiNIP">NIP</label>
-                    <input type="text" name="nip" class="form-control" id="IsiNIP" placeholder="Masukkan NIP">
+                    <input type="text" name="nip" class="form-control" id="IsiNIP" value="<?php echo $kd['Nip']; ?>">
                   </div>
                   <div class="form-group">
                     <label for="IsiPelatihan">Pelatihan</label>
-                    <input type="text" name="pelatihan" class="form-control" id="IsiPelatihan" placeholder="Masukkan Pelatihan">
+                    <input type="text" name="pelatihan" class="form-control" id="IsiPelatihan" value="<?php echo $kd['Pelatihan']; ?>">
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
+                  <input type="hidden" name="id_kepdes" value="<?php echo $kd['id_kepdes'];?>">
                   <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="update">Edit</button>
                 </div>
-              </form>
+              </form>  <?php } ?>
             </div>
             <!-- /.card -->
             </div>
@@ -205,7 +216,7 @@ if( isset($_SESSION['username']) ){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->

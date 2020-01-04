@@ -10,7 +10,7 @@ if (isset($_SESSION['username'])){
     $result = mysqli_query($mysqli, "SELECT pengaduan_warga.id_pw, penduduk.Nama, penduduk.Nik, pengaduan_warga.Pesan, pengaduan_warga.tgl_pengaduan_warga FROM pengaduan_warga JOIN penduduk ON penduduk.Nik=pengaduan_warga.Nik WHERE Nik like '%".$Cari."%' OR Nama like '%".$Cari."%' OR tgl_pengaduan_warga like '%".$Cari."%'");
   }
   else{
-    $result = mysqli_query($mysqli, "SELECT pengaduan_warga.id_pw, penduduk.Nama, penduduk.Nik, pengaduan_warga.Pesan, pengaduan_warga.tgl_pengaduan_warga FROM pengaduan_warga JOIN penduduk ON penduduk.Nik=pengaduan_warga.Nik");
+    $result = mysqli_query($mysqli, "SELECT pengaduan_warga.id_pw, penduduk.Nama, penduduk.Nik, pengaduan_warga.Pesan, pengaduan_warga.tgl_pengaduan_warga, pengaduan_warga.status FROM pengaduan_warga JOIN penduduk ON penduduk.Nik=pengaduan_warga.Nik");
   }
 
 ?>
@@ -109,12 +109,6 @@ if (isset($_SESSION['username'])){
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="perangkatdesa.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
             <a href="strukorgan.php" class="nav-link">
               <i class="nav-icon fas fa-object-group"></i>
               <p style="color: white !important">Struktur Organisasi</p>
@@ -188,9 +182,6 @@ if (isset($_SESSION['username'])){
                 <div class="col-6">
                   <h3 class="card-title">Data Pengaduan Warga</h3>
                 </div>
-                <div class="col-6 p-0 text-right">
-                  <a href="add_pewarga.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
-                </div>
               </div>
             </div>
             <!-- /.card-header -->
@@ -203,7 +194,8 @@ if (isset($_SESSION['username'])){
                   <th>NIK</th>
                   <th>Pesan</th>
                   <th>Tanggal Pengaduan Warga</th>
-                  <th>Edit/Hapus Data</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -216,7 +208,8 @@ if (isset($_SESSION['username'])){
                     echo "<td>".$user_data['Nik']."</td>";
                     echo "<td>".$user_data['Pesan']."</td>";
                     echo "<td>".$user_data['tgl_pengaduan_warga']."</td>"; 
-                    echo "<td><a href='edit.php?id_pw=$user_data[id_pw]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='delete.php?id_pw=$user_data[id_pw]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
+                    echo "<td>".$user_data['status']."</td>"; 
+                    echo "<td><a href='proses_pewarga.php?id=".$user_data['id_pw']."' class='btn btn-success btn-sm'><i class='fa fa-check-square' aria-hidden='true'></i></a>";
                     $No++;
                 }
                 ?>
@@ -236,7 +229,7 @@ if (isset($_SESSION['username'])){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->

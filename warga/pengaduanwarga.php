@@ -133,7 +133,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" id="quickForm" action="proses_pw.php" method="POST" onsubmit="alert('Kirim Pesan Anda?')">
+              <form role="form" id="quickForm" action="proses_pw.php" method="POST" onsubmit="confirm('Kirim Pesan Anda?')">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="namaPengguna">Nama Pengguna</label>

@@ -101,12 +101,6 @@ if( isset($_SESSION['username']) ){
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="perangkatdesa.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
             <a href="strukorgan.php" class="nav-link">
               <i class="nav-icon fas fa-object-group"></i>
               <p style="color: white !important">Struktur Organisasi</p>
@@ -205,7 +199,7 @@ if( isset($_SESSION['username']) ){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->

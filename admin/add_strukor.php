@@ -100,12 +100,6 @@ if( isset($_SESSION['username']) ){
               <p style="color: white !important">Kepala Desa</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="perangkatdesa.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
-            </a>
-          </li>
           <li class="nav-item has-treeview menu-open">
             <a href="strukorgan.php" class="nav-link active" style="background-color: #6D9BBC">
               <i class="nav-icon fas fa-object-group"></i>
@@ -205,7 +199,7 @@ if( isset($_SESSION['username']) ){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->

@@ -5,6 +5,7 @@ include_once("../koneksi.php");
 if (isset($_POST['submit'])) {
 	$namap=$_POST['namap'];
  	$isi=$_POST['isi'];
+ 	date_default_timezone_set('Asia/Jakarta');
  	$tanggal = date("Y-m-d H:i:s");
 
  	$user=mysqli_query($mysqli, "SELECT * FROM penduduk WHERE Nama='$namap'");
@@ -14,7 +15,5 @@ if (isset($_POST['submit'])) {
 
  	header('location:pengaduanwarga.php');
 }
-
- 
 
 ?>

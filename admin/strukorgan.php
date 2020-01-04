@@ -6,7 +6,7 @@ session_start();
 if( isset($_SESSION['username']) ){
   if (isset($_POST['Cari'])) {
     $Cari=$_POST['Cari'];
-    $result = mysqli_query($mysqli, "SELECT struktur_organisasi_detail.id_strukor, penduduk.Nama, penduduk.Jenis_kelamin, struktur_organisasi.Jabatan, struktur_organisasi_detail.masa_jabatan FROM struktur_organisasi_detail JOIN penduduk ON penduduk.Nik=struktur_organisasi_detail.Nik JOIN struktur_organisasi ON struktur_organisasi_detail.id_strukor=struktur_organisasi.id_strukor WHERE Jabatan like '%".$Cari."%' OR masa_jabatan like '%".$Cari."%'");
+    $result = mysqli_query($mysqli, "SELECT struktur_organisasi_detail.id_strukor, penduduk.Nama, penduduk.Jenis_kelamin, struktur_organisasi.Jabatan, struktur_organisasi_detail.masa_jabatan FROM struktur_organisasi_detail JOIN penduduk ON penduduk.Nik=struktur_organisasi_detail.Nik JOIN struktur_organisasi ON struktur_organisasi_detail.id_strukor=struktur_organisasi.id_strukor WHERE Jabatan like '%".$Cari."%' OR masa_jabatan like '%".$Cari."%' OR Nama like '%".$Cari."%'");
   }
   else{
     $result = mysqli_query($mysqli, "SELECT struktur_organisasi_detail.id_strukor, penduduk.Nama, penduduk.Jenis_kelamin, struktur_organisasi.Jabatan, struktur_organisasi_detail.masa_jabatan FROM struktur_organisasi_detail JOIN penduduk ON penduduk.Nik=struktur_organisasi_detail.Nik JOIN struktur_organisasi ON struktur_organisasi_detail.id_strukor=struktur_organisasi.id_strukor");
@@ -107,12 +107,6 @@ if( isset($_SESSION['username']) ){
               <p style="color: white !important">Kepala Desa</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="perangkatdesa.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
-            </a>
-          </li>
           <li class="nav-item has-treeview menu-open">
             <a href="strukorgan.php" class="nav-link active" style="background-color: #6D9BBC">
               <i class="nav-icon fas fa-object-group"></i>
@@ -188,7 +182,7 @@ if( isset($_SESSION['username']) ){
                   <h3 class="card-title">Struktur Organisasi</h3>
                 </div>
                 <div class="col-6 p-0 text-right">
-                  <a class="btn btn-sm" href="add_strukor.php" style="background-color: #52748D !important; color: white">Tambah Data</a>
+                  <a class="btn btn-sm" href="add_strukor.php" style="background-color: #52748D !important; color: white">Tambah Data &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
@@ -202,7 +196,7 @@ if( isset($_SESSION['username']) ){
                   <th>Jenis Kelamin</th>
                   <th>Jabatan</th>
                   <th>Masa Jabatan</th>
-                  <th>Edit/Hapus Data</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -216,7 +210,7 @@ if( isset($_SESSION['username']) ){
                     echo "<td>".$user_data['Jenis_kelamin']."</td>"; 
                     echo "<td>".$user_data['Jabatan']."</td>"; 
                     echo "<td>".$user_data['masa_jabatan']."</td>";
-                    echo "<td><a href='editstrukor.php?id_strukor=$user_data[id_strukor]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='deletestrukor.php?id_strukor=$user_data[id_strukor]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
+                    echo "<td><a href='editstrukor.php?id_strukor=$user_data[id_strukor]' class='btn btn-success btn-sm'><i class='fa fa-edit' aria-hidden='true'></i></a>  <a href='deletestrukor.php?id_strukor=$user_data[id_strukor]' class='btn btn-danger btn-sm'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
                     $No++;
                 }
                 ?>
@@ -236,7 +230,7 @@ if( isset($_SESSION['username']) ){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->

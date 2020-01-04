@@ -7,10 +7,10 @@ session_start();
 if (isset($_SESSION['username'])){
   if (isset($_POST['Cari'])) {
     $Cari=$_POST['Cari'];
-    $result = mysqli_query($mysqli, "SELECT * FROM penduduk WHERE Nik like '%".$Cari."%' OR Nama like '%".$Cari."%'");
+    $result = mysqli_query($mysqli, "SELECT * FROM penduduk WHERE Nik like '%".$Cari."%' OR Nama like '%".$Cari."%' ORDER BY Nama ASC");
   }
   else{
-    $result = mysqli_query($mysqli, "SELECT * FROM penduduk");
+    $result = mysqli_query($mysqli, "SELECT * FROM penduduk ORDER BY Nama ASC");
   }
 
 ?>
@@ -109,12 +109,6 @@ if (isset($_SESSION['username'])){
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="perangkatdesa.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
             <a href="strukorgan.php" class="nav-link">
               <i class="nav-icon fas fa-object-group"></i>
               <p style="color: white !important">Struktur Organisasi</p>
@@ -189,7 +183,7 @@ if (isset($_SESSION['username'])){
                   <h3 class="card-title">Kependudukan</h3>
                 </div>
                 <div class="col-6 p-0 text-right">
-                  <a href="add_penduduk.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
+                  <a href="add_penduduk.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
@@ -197,15 +191,23 @@ if (isset($_SESSION['username'])){
             <div class="card-body overflow-auto p-0" method="post" action="kependudukan.php">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama Lengkap</th>
-                  <th>NIK</th>
-                  <th>Jenis Kelamin</th>
-                  <th>Tanggal Lahir</th>
-                  <th>Pendidikan</th>
-                  <th>Pekerjaan</th>
-                  <th>Edit/Hapus Data</th>
+                <tr style="text-align: center;">
+                  <th style="padding-bottom: 50px;">No</th>
+                  <th style="padding-bottom: 50px;">No. KK</th>
+                  <th style="padding-bottom: 35px;">Nama Lengkap</th>
+                  <th style="padding-bottom: 50px;">NIK</th>
+                  <th style="padding-bottom: 35px;">Jenis Kelamin</th>
+                  <th style="padding-bottom: 35px;">Tanggal Lahir</th>
+                  <th style="padding-bottom: 50px;">Agama</th>
+                  <th style="padding-bottom: 50px;">Pendidikan</th>
+                  <th style="padding-bottom: 50px;">Pekerjaan</th>
+                  <th style="padding-bottom: 35px;">Status Perkawinan</th>
+                  <th style="padding-bottom: 25px;">Status Hubungan Keluarga</th>
+                  <th style="padding-bottom: 50px;">Kewarganegaraan</th>
+                  <th style="padding-bottom: 35px;">Nama Ayah</th>
+                  <th style="padding-bottom: 35px;">Nama Ibu</th>
+                  <th style="padding-bottom: 50px;">Alamat</th>
+                  <th style="padding-bottom: 50px;">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -214,14 +216,22 @@ if (isset($_SESSION['username'])){
                 while($user_data = mysqli_fetch_array($result)) {         
                     echo "<tr>";
                     echo "<td>".$No."</td>";
-                    // echo "<td>".$user_data['id_penduduk']."</td>";
+                    echo "<td>".$user_data['no_kk']."</td>";
                     echo "<td>".$user_data['Nama']."</td>";
                     echo "<td>".$user_data['Nik']."</td>";
                     echo "<td>".$user_data['Jenis_kelamin']."</td>";
                     echo "<td>".$user_data['Tanggal_lahir']."</td>"; 
+                    echo "<td>".$user_data['Agama']."</td>"; 
                     echo "<td>".$user_data['Pendidikan']."</td>"; 
-                    echo "<td>".$user_data['Pekerjaan']."</td>";    
-                    echo "<td><a href='edit.php?id_penduduk=$user_data[id_penduduk]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='delete.php?id_penduduk=$user_data[id_penduduk]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
+                    echo "<td>".$user_data['Pekerjaan']."</td>";  
+                    echo "<td>".$user_data['Status_perkawinan']."</td>";  
+                    echo "<td>".$user_data['Status_hub_kel']."</td>";  
+                    echo "<td>".$user_data['Kewarganegaraan']."</td>";  
+                    echo "<td>".$user_data['Nama_Ayah']."</td>";  
+                    echo "<td>".$user_data['Nama_Ibu']."</td>";
+                    echo "<td>".$user_data['Alamat']."</td>";
+                    echo "<td><a href='editkp.php?id_penduduk=$user_data[id_penduduk]' class='btn btn-success btn-sm'><i class='fa fa-edit' aria-hidden='true'></i></a>
+                              <a href='deletekp.php?id_penduduk=$user_data[id_penduduk]' class='btn btn-danger btn-sm'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
                     $No++;
                 }
                 ?>
@@ -241,7 +251,7 @@ if (isset($_SESSION['username'])){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->

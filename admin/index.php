@@ -97,12 +97,6 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="perangkatdesa.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
             <a href="strukorgan.php" class="nav-link">
               <i class="nav-icon fas fa-object-group"></i>
               <p style="color: white !important">Struktur Organisasi</p>
@@ -201,27 +195,6 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <?php
-
-                  $qpd=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM perangkat_desa_detail");
-                  $pd=mysqli_fetch_array($qpd);
-
-                  ?>
-                <h3><?php echo $pd['data']; ?></h3>
-
-                <p>Perangkat Desa</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="perangkatdesa.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
                 <?php
@@ -310,7 +283,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->

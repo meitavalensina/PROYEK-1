@@ -4,14 +4,27 @@ include_once("../koneksi.php");
 
 session_start();
 
-if (isset($_SESSION['username'])){
-  if (isset($_POST['Cari'])) {
-    $Cari=$_POST['Cari'];
-    $result = mysqli_query($mysqli, "SELECT sarana_prasarana.id_sarpras, kategori_sarpras.id_katsp, sarana_prasarana.Nama, kategori_sarpras.nama_kategori, sarana_prasarana.Jumlah FROM sarana_prasarana JOIN kategori_sarpras ON kategori_sarpras.id_katsp=sarana_prasarana.id_katsp WHERE nama_kategori like '%".$Cari."%' OR Nama like '%".$Cari."%'");
+if( isset($_SESSION['username']) ){
+  if (isset($_POST['update'])) {
+    $id_sarpras=$_POST['id_sarpras'];
+    $id_katsp=$_POST['id_katsp'];
+    $nama=$_POST['nama'];
+    $kategori=$_POST['kategori'];
+    $jumlah=$_POST['jumlah'];
+
+    $query1=mysqli_query($mysqli, "UPDATE sarana_prasarana SET Nama='$nama', Jumlah='$jumlah' WHERE id_sarpras='$id_sarpras'");
+
+    $query2=mysqli_query($mysqli, "UPDATE kategori_sarpras SET nama_kategori='$kategori' WHERE id_katsp='$id_katsp'");
+
+    header('location:sarpras.php');
+
   }
-  else{
-    $result = mysqli_query($mysqli, "SELECT sarana_prasarana.id_sarpras, kategori_sarpras.id_katsp, sarana_prasarana.Nama, kategori_sarpras.nama_kategori, sarana_prasarana.Jumlah FROM sarana_prasarana JOIN kategori_sarpras ON kategori_sarpras.id_katsp=sarana_prasarana.id_katsp");
-  }
+
+  $id_sarpras=$_GET['id_sarpras'];
+
+  $result=mysqli_query($mysqli, "SELECT sarana_prasarana.id_sarpras, kategori_sarpras.id_katsp, sarana_prasarana.Nama, kategori_sarpras.nama_kategori, sarana_prasarana.Jumlah FROM sarana_prasarana JOIN kategori_sarpras ON kategori_sarpras.id_katsp=sarana_prasarana.id_katsp WHERE sarana_prasarana.id_sarpras='$id_sarpras'");
+
+  while($sarpras = mysqli_fetch_array($result)){
 
 ?>
 
@@ -148,7 +161,8 @@ if (isset($_SESSION['username'])){
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Sarana & Prasarana</li>
+              <li class="breadcrumb-item"><a href="sarpras.php">Sarana & Prasarana</a></li>
+              <li class="breadcrumb-item active">Edit Sarana & Prasarana</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -159,71 +173,105 @@ if (isset($_SESSION['username'])){
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-title">
-              <form method="post">
-                <div class="input-group p-3">
-                  <input class="form-control" type="text" placeholder="Cari..." name="Cari" required 
-                    <?php 
-                    if(isset($_POST['Cari'])){
-                        echo "value='".$_POST['Cari']."'";
-                    }
-                    ?>>
-                  <div class="input-group-prepend">
-                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card">
+              <div class="card-header"  style="background-color: #52748D !important">
+                <h3 class="card-title" style="color: white">Edit Sarana & Prasarana</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="quickForm" method="post" action="editsarpras.php">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="IsiNama">Nama</label>
+                    <input type="text" name="nama" class="form-control" id="IsiNama" value="<?php echo $sarpras['Nama'] ?>">
                   </div>
-              </div>
-            </form>
-            </div>
-            <div class="card-header border-top">
-              <div class="row">
-                <div class="col-6">
-                  <h3 class="card-title">Sarana & Prasarana</h3>
+                  <div class="form-group">
+                    <label for="IsiKategori">Kategori</label>
+                    <?php
+                    if ($sarpras['nama_kategori']=="Sarana Desa") { ?>
+                      <select class="form-control" name="kategori" id="IsiKategori">
+                        <option selected>Sarana Desa</option>
+                        <option>Prasarana Pendidikan</option>
+                        <option>Prasarana Ibadah</option>
+                        <option>Prasarana Air Bersih</option>
+                        <option>Prasarana Sanitasi dan Irigasi</option>
+                      </select> <?php
+                    }
+                    elseif ($sarpras['nama_kategori']=="Prasarana Pendidikan") { ?>
+                      <select class="form-control" name="kategori" id="IsiKategori">
+                        <option>Sarana Desa</option>
+                        <option selected>Prasarana Pendidikan</option>
+                        <option>Prasarana Ibadah</option>
+                        <option>Prasarana Air Bersih</option>
+                        <option>Prasarana Sanitasi dan Irigasi</option>
+                      </select> <?php
+                    }
+                    elseif ($sarpras['nama_kategori']=="Prasarana Ibadah") { ?>
+                      <select class="form-control" name="kategori" id="IsiKategori">
+                        <option>Sarana Desa</option>
+                        <option>Prasarana Pendidikan</option>
+                        <option selected>Prasarana Ibadah</option>
+                        <option>Prasarana Air Bersih</option>
+                        <option>Prasarana Sanitasi dan Irigasi</option>
+                      </select> <?php
+                    }
+                    elseif ($sarpras['nama_kategori']=="Prasarana Air Bersih") { ?>
+                      <select class="form-control" name="kategori" id="IsiKategori">
+                        <option>Sarana Desa</option>
+                        <option>Prasarana Pendidikan</option>
+                        <option>Prasarana Ibadah</option>
+                        <option selected>Prasarana Air Bersih</option>
+                        <option>Prasarana Sanitasi dan Irigasi</option>
+                      </select> <?php
+                    }
+                    elseif ($sarpras['nama_kategori']=="Prasarana Sanitasi dan Irigasi") { ?>
+                      <select class="form-control" name="kategori" id="IsiKategori">
+                        <option>Sarana Desa</option>
+                        <option>Prasarana Pendidikan</option>
+                        <option>Prasarana Ibadah</option>
+                        <option>Prasarana Air Bersih</option>
+                        <option selected>Prasarana Sanitasi dan Irigasi</option>
+                      </select> <?php
+                    }
+                    else { ?>
+                      <select class="form-control" name="kategori" id="IsiKategori">
+                        <option>Sarana Desa</option>
+                        <option>Prasarana Pendidikan</option>
+                        <option>Prasarana Ibadah</option>
+                        <option>Prasarana Air Bersih</option>
+                        <option>Prasarana Sanitasi dan Irigasi</option>
+                      </select> <?php
+                    }
+                    ?>
+                  </div>
+                  <div class="form-group">
+                    <label for="IsiJumlah">Jumlah</label>
+                    <input type="number" name="jumlah" class="form-control" id="IsiJumlah" value="<?php echo $sarpras['Jumlah'] ?>">
+                  </div>
                 </div>
-                <div class="col-6 p-0 text-right">
-                  <a href="add_sarpras.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <input type="hidden" name="id_sarpras" value="<?php echo $sarpras['id_sarpras'];?>">
+                  <input type="hidden" name="id_katsp" value="<?php echo $sarpras['id_katsp'];?>">
+                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="update">Edit</button>
                 </div>
-              </div>
+              </form> <?php } ?>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body overflow-auto p-0" method="post" action="sarpras.php">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>Kategori</th>
-                  <th>Jumlah</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $No=1;
-                while($user_data = mysqli_fetch_array($result)) {         
-                    echo "<tr>";
-                    echo "<td>".$No."</td>";
-                    // echo "<td>".$user_data['id_penduduk']."</td>";
-                    echo "<td>".$user_data['Nama']."</td>";
-                    echo "<td>".$user_data['nama_kategori']."</td>"; 
-                    echo "<td>".$user_data['Jumlah']."</td>";    
-                    echo "<td><a href='editsarpras.php?id_sarpras=$user_data[id_sarpras]' class='btn btn-success btn-sm'><i class='fa fa-edit' aria-hidden='true'></i></a>  <a href='deletesarpras.php?id_sarpras=$user_data[id_sarpras]' class='btn btn-danger btn-sm'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
-                    $No++;
-                }
-                ?>
-                </tbody>
-              </table><br>
+            <!-- /.card -->
             </div>
-            <!-- /.card-body -->
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
           </div>
-          <!-- /.card -->
+          <!--/.col (right) -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>

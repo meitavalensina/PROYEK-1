@@ -1,3 +1,20 @@
+<?php
+
+include_once("../koneksi.php");
+
+session_start();
+
+if (isset($_SESSION['username'])){
+  if (isset($_POST['Cari'])) {
+    $Cari=$_POST['Cari'];
+    $result = mysqli_query($mysqli, "SELECT pengajuan_surat.id_ps, penduduk.Nama, penduduk.Nik, penduduk.Tanggal_lahir, penduduk.Jenis_kelamin, pengajuan_surat.tgl_pengajuan_surat, penduduk.Alamat, pengajuan_surat.alasan, pengajuan_surat.status FROM pengajuan_surat JOIN penduduk ON penduduk.Nik=pengajuan_surat.Nik WHERE Nik like '%".$Cari."%' OR Nama like '%".$Cari."%' OR tgl_pengajuan_surat like '%".$Cari."%'");
+  }
+  else{
+    $result = mysqli_query($mysqli, "SELECT pengajuan_surat.id_ps, penduduk.Nama, penduduk.Nik, penduduk.Tanggal_lahir, penduduk.Jenis_kelamin, pengajuan_surat.tgl_pengajuan_surat, penduduk.Alamat, pengajuan_surat.alasan, pengajuan_surat.status FROM pengajuan_surat JOIN penduduk ON penduduk.Nik=pengajuan_surat.Nik");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +58,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="nav-link" style="color: black !important"><i class="fas fa-user-circle"></i></div>
+      <li class="nav-item">
+        <div class="nav-link">
+          <?php 
+
+          echo $_SESSION['nama_user']."(admin)";
+          ?>
+        </div>
       </li>
       <li class="nav-item">
         <div class="nav-link">
@@ -86,12 +106,6 @@
             <a href="kepaladesa.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white !important">Kepala Desa</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="perangkatdesa.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p style="color: white !important">Perangkat Desa</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
@@ -148,44 +162,69 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Data Pengajuan Surat</h3>
+            <div class="card-title">
+              <form method="post">
+                <div class="input-group p-3">
+                  <input class="form-control" type="text" placeholder="Cari..." name="Cari" required 
+                    <?php 
+                    if(isset($_POST['Cari'])){
+                        echo "value='".$_POST['Cari']."'";
+                    }
+                    ?>>
+                  <div class="input-group-prepend">
+                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+                  </div>
+              </div>
+            </form>
+            </div>
+            <div class="card-header border-top">
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="card-title">Data Pengajuan Surat</h3>
+                </div>
+              </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body overflow-auto p-0">
+            <div class="card-body overflow-auto p-0" method="post" action="dpsurat.php">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama</th>
+                  <th>Nama Lengkap</th>
                   <th>NIK</th>
-                  <th>Jenis Surat</th>
-                  
+                  <th>Tanggal Lahir</th>
+                  <th>Jenis Kelamin</th>
+                  <th>Tanggal Pengajuan Surat</th>
+                  <th>Alamat</th>
+                  <th>Alasan</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Lufita Alif Nurjanah
-                  </td>
-                  <td>8639738108107</td>
-                  <td>sktm</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Meita Valensina</td>
-                  <td>238293792</td>
-                  <td>sktm</td>
-                 
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Nada Qonita Amalia</td>
-                  <td>92839167301</td>
-                  <td>sktm</td>
-                </tr>
+                <?php
+                $No=1;
+                while($user_data = mysqli_fetch_array($result)) {         
+                    echo "<tr>";
+                    echo "<td>".$No."</td>";
+                    echo "<td>".$user_data['Nama']."</td>";
+                    echo "<td>".$user_data['Nik']."</td>";
+                    echo "<td>".$user_data['Tanggal_lahir']."</td>";
+                    echo "<td>".$user_data['Jenis_kelamin']."</td>";
+                    echo "<td>".$user_data['tgl_pengajuan_surat']."</td>";
+                    echo "<td>".$user_data['Alamat']."</td>";
+                    echo "<td>".$user_data['alasan']."</td>";
+                    echo "<td>".$user_data['status']."</td>"; 
+                    echo "<td><a href='proses_dpsurat.php?status=psa&id=".$user_data['id_ps']."' class='btn btn-success btn-sm'><i class='fa fa-check-square' aria-hidden='true'></i></a>
+                              <a href='proses_dpsurat.php?status=psn&id=".$user_data['id_ps']."' class='btn btn-danger btn-sm'><i class='fa fa-times' aria-hidden='true'></i></a>
+                              <a href='proses_dpsurat.php?status=sb&id=".$user_data['id_ps']."' class='btn btn-info btn-sm'><i class='fa fa-envelope' aria-hidden='true'></i></a>
+                              <a href='proses_dpsurat.php?status=sj&id=".$user_data['id_ps']."' class='btn btn-info btn-sm'><i class='fa fa-envelope-open' aria-hidden='true'></i></a>
+                              <a href='proses_dpsurat.php?status=sk&id=".$user_data['id_ps']."' class='btn btn-success btn-sm'><i class='fa fa-paper-plane' aria-hidden='true'></i></a></td></tr>";
+                    $No++;
+                }
+                ?>
                 </tbody>
-              </table>
+              </table><br>
             </div>
             <!-- /.card-body -->
           </div>
@@ -200,7 +239,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
+    <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</strong>
   </footer>
 
   <!-- Control Sidebar -->
@@ -247,3 +286,14 @@
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+    }else{
+        echo "
+            <script>
+                alert('Anda harus login!');
+            </script>
+        ";
+        header('Location: ../index.php');
+    }
+?>

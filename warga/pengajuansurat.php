@@ -133,7 +133,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" id="quickForm">
+              <form role="form" id="quickForm" method="POST" action="proses_ps.php">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
@@ -144,59 +144,8 @@
                     <input type="text" name="nik" class="form-control" id="nik" placeholder="Masukan NIK">
                   </div>
                   <div class="form-group">
-                    <label for="ttl">Tempat Tanggal Lahir</label>
-                    <input type="text" name="ttl" class="form-control" id="ttl" placeholder="Masukan Tempat Tanggal Lahir">
-                  </div>
-                  <div class="form-group">
-<<<<<<< HEAD
-                    <label for="Masukan Jenis Kelamin">Jenis Kelamin</label>
-                    <input type="text" name="Jenis Kelamin" class="form-control" id="Masukan Jenis Kelamin" placeholder="Masukan Jenis Kelamin">
-                  </div>
-                  <div class="form-group">
-                    <label for="Masukan Alamat">Alamat</label>
-                    <input type="text" name="Alamat" class="form-control" id="Masukan Alamat" placeholder="Masukan Alamat">
-                  </div>
-                  <div class="form-group">
-                    <label for="Masukan Alasan">Alasan</label>
-                    <input type="text" name="Alasan" class="form-control" id="Masukan Alasan" placeholder="Masukan Alasan">
-                  </div>
-                  <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-                    </div>
-=======
-                    <label for="agama">Agama</label>
-                    <input type="text" name="agama" class="form-control" id="agama" placeholder="Masukan Agama">
-                  </div>
-                  <div class="form-group">
-                    <label for="jk">Jenis Kelamin</label>
-                    <input type="text" name="jk" class="form-control" id="jk" placeholder="Masukan Jenis Kelamin">
-                  </div>
-                  <div class="form-group">
-                    <label for="sp">Status Perkawinan</label>
-                    <input type="text" name="sp" class="form-control" id="sp" placeholder="Masukan Status Perkawinan">
-                  </div>
-                  <div class="form-group">
-                    <label for="pekerjaan">Pekerjaan</label>
-                    <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Masukan Pekerjaan">
-                  </div>
-                  <div class="form-group">
-                    <label for="pb">Penghasilan Perbulan</label>
-                    <input type="text" name="pb" class="form-control" id="pb" placeholder="Masukan Penghasilan Perbulan">
-                  </div>
-                  <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Masukan Alamat">
-                  </div>
-                  <div class="form-group">
-                    <label for="as">Asal Sekolah</label>
-                    <input type="text" name="as" class="form-control" id="as" placeholder="Masukan Asal Sekolah">
-                  </div>
-                  <div class="form-group">
-                    <label for="um">Untuk Melanjutkan</label>
-                    <input type="text" name="um" class="form-control" id="um" placeholder="Masukan Untuk Melanjutkan">
->>>>>>> 3153863664f67a278597c74a50a3755c727fffc5
+                    <label for="IsiAlasan">Alasan</label>
+                    <textarea type="text" name="alasan" class="form-control" id="IsiAlasan" placeholder="Masukan Alasan Membuat Surat"></textarea>
                   </div>
                 </div>
                 <!-- /.card-body -->

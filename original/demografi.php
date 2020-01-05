@@ -177,11 +177,15 @@
                                 <p>By <a href="#">james smith</a></p>
                                 <p>3 comments</p>
                             </div>
-                            <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamcorper id. Quisque at erat eu libero consequat tempus. Quisque molestie convallis tempus. Ut semper purus metus, a euismod sapien sodales ac. Duis viverra eleifend fermentum. Donec sagittis lacus sit amet augue sodales, vel cursus enim tristique. Maecenas vitae massa ut est consectetur sagittis quis vitae tortor. Sed et massa vel nisi dapibus pretium et et leo.</p>
+                            <p>Aspek hidrologi wilayah desa sangat diperlukan dalam pengendalian dan pengaturan tata air wilayah desa, berdasarkan hidrologinya, aliran-aliran sungai di wilayah Desa Ujungaris.</p>
 
-                            <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. Morbi sodales, dolor id ultricies dictum, diam odio tempor purus, at ultrices elit nulla ac nisl. Vestibulum enim sapien, blandit finibus elit vitae, venenatis tempor enim. Ut varius eros at fringilla aliquet. Sed sed sodales quam. Nam fermentum sed turpis sollicitudin lobortis.</p>
+                            <p>Adapun sumber air yang menghidupi Desa Ujungaris diantaranya :<br>
+                            1. Sungai Cimanuk<br>
+                            2. Sungai Cipelang<br>
+                            3. Sungai Cibogor<br>
+                            4. Sungai Cibuaya</p>
 
-                            <p>Proin a nibh dignissim, volutpat mauris vitae, pellentesque nisi. In euismod non ligula at gravida. Nunc blandit eget enim vel mattis. Sed semper, purus ac suscipit scelerisque, eros dui fermentum tortor, vitae facilisis lacus nulla sit amet diam. Nullam eget sagittis mi. Suspendisse vitae volutpat lorem. Cras porta velit id sagittis ultrices. Maecenas efficitur tellus ac aliquam molestie. Morbi vel ipsum gravida, ultricies nunc sed, posuere purus. Donec ipsum lectus, congue ut fermentum vitae, molestie hendrerit erat. Sed lacinia accumsan egestas. Cras ac ipsum a ante placerat pellentesque.</p>
+                            <p>Secara umum akhir-akhir ini terjadi penaikan curah hujan dan jumlah hujan dibanding selama tahun-tahun sebelumnya. Hal ini dapat menjadi sangat berpengaruh kepada sumber air yang menjadi sumber kehidupan masyarakat penggarap sawah. Ditunjang juga oleh adanya pembelokan aliran yang tidak terkendalioleh penggarap sawah yang berada di daerah hulu, akibat kurangnya pengawasan dari pihak terkait.</p>
                         </div>
                     </div>
 
@@ -191,7 +195,7 @@
                             <div class="line"></div>
                             <span class="author-role">Demografi</span>
                             <h4><a href="#" class="author-name">Topografi</a></h4>
-                            <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero.</p>
+                            <p>Desa Ujungaris merupakan desa yang berada di sebelah utara pulau Jawa, dengan ketinggian 9.75 Dpl (Diatas Permukaan Laut). Di sebelah Timur dibatasi oleh sungai Cimanuk, di sebelah Utara berbatasan dengan desa Ujungjaya Kecamatan Widasari, di sebelah Selatan berbatasan dengan desa Kongsijaya Kecamatan Widasari dan di sebelah Barat berbatasan dengan desa Bunder Kecamatan Widasari.</p>
                         </div>
                     </div>
 
@@ -202,11 +206,7 @@
                             <div class="line"></div>
                             <a href="#" class="post-tag">Demografi</a>
                             <h4><a href="#" class="post-headline mb-0">Luas dan Sebaran Penggunaan Lahan</a></h4>
-                            <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamcorper id. Quisque at erat eu libero consequat tempus. Quisque molestie convallis tempus. Ut semper purus metus, a euismod sapien sodales ac. Duis viverra eleifend fermentum. Donec sagittis lacus sit amet augue sodales, vel cursus enim tristique. Maecenas vitae massa ut est consectetur sagittis quis vitae tortor. Sed et massa vel nisi dapibus pretium et et leo.</p>
-
-                            <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. Morbi sodales, dolor id ultricies dictum, diam odio tempor purus, at ultrices elit nulla ac nisl. Vestibulum enim sapien, blandit finibus elit vitae, venenatis tempor enim. Ut varius eros at fringilla aliquet. Sed sed sodales quam. Nam fermentum sed turpis sollicitudin lobortis.</p>
-
-                            <p>Proin a nibh dignissim, volutpat mauris vitae, pellentesque nisi. In euismod non ligula at gravida. Nunc blandit eget enim vel mattis. Sed semper, purus ac suscipit scelerisque, eros dui fermentum tortor, vitae facilisis lacus nulla sit amet diam. Nullam eget sagittis mi. Suspendisse vitae volutpat lorem. Cras porta velit id sagittis ultrices. Maecenas efficitur tellus ac aliquam molestie. Morbi vel ipsum gravida, ultricies nunc sed, posuere purus. Donec ipsum lectus, congue ut fermentum vitae, molestie hendrerit erat. Sed lacinia accumsan egestas. Cras ac ipsum a ante placerat pellentesque.</p>
+                            <p>Pada umumnya lahan yang berada atau terdapat di Desa Ujungaris digunakan secara produktif, karena merupakan lahan yang subur terutama untuk lahan pertanian, jadi hanya sebagian kecil saja yang tidak dimanfaatkan oleh warga, hal ini pula menunjukkan bahwa kawasan desa Ujungaris adalah daerah yang memiliki sumber daya alam yang memadai dan siap untuk diolah. Luas lahan wilayah menurut penggunaan sebagaimana terlihat dalam tabel berikut ini : ISINYA TABEL</p>
                         </div>
                     </div>
 

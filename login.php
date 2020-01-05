@@ -1,30 +1,51 @@
-<?php 
+<?php
+
+session_start();
 
 include_once "koneksi.php";
 
 if (isset($_POST['login'])) {
-	// mengaktifkan session pada php
-	session_start();
-
-	// menghubungkan php dengan koneksi database
-	
-
-	// menangkap data yang dikirim dari form login
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$kodecaptcha = $_POST['kodecaptcha'];
 
+	$q=mysqli_query($mysqli,"SELECT * FROM penduduk WHERE Nik='$username'");
+	$data=mysqli_fetch_array($q);
+	$cek=mysqli_num_rows($q);
 
-	// menyeleksi data user dengan username dan password yang sesuai
-	$login = mysqli_query($mysqli,"SELECT * FROM penduduk where username='$username' and password='$password'");
-	// menghitung jumlah data yang ditemukan
-	$cek = mysqli_num_rows($login);
-
-	
-		if($cek > 0){
-
-			$data = mysqli_fetch_array($login);
-
+	if ($cek > 0) {
+		if ($kodecaptcha != $_SESSION["code"] OR $_SESSION["code"]=='') {
+			echo '<script language="javascript">
+			alert ("Kode Captcha Salah!");
+			window.location="index.php";
+			</script>';
+			exit();
+		}
+		else {
+			if ($data['level']=="warga") {
+				$warga=mysqli_query($mysqli, "SELECT user_warga.id_user, user_warga.Nik, penduduk.no_kk FROM user_warga JOIN penduduk ON penduduk.Nik=user_warga.Nik WHERE user_warga.Nik='$username' AND penduduk.no_kk='$password'");
+				$ambilwarga=mysqli_fetch_array($warga);
+				if ($username==$ambilwarga['Nik'] AND $password==$ambilwarga['no_kk']) {
+					$_SESSION['username'] = $username;
+					$_SESSION['nama_user'] = $ambilwarga['Nama'];
+					$_SESSION['level'] = "warga";
+					// alihkan ke halaman warga
+					header("location:../PROYEK-1/warga/index.php");
+				}
+				else {
+					echo "Username/Password Salah!";
+				}
+			}
+			else {
+				echo "Gagal masuk sebagai warga";
+			}
+		}
+	}
+	else {
+		$q=mysqli_query($mysqli,"SELECT * FROM admin WHERE username='$username'");
+		$data=mysqli_fetch_array($q);
+		$cek=mysqli_num_rows($q);
+		if ($cek > 0) {
 			if ($kodecaptcha != $_SESSION["code"] OR $_SESSION["code"]=='') {
 				echo '<script language="javascript">
 				alert ("Kode Captcha Salah!");
@@ -32,41 +53,26 @@ if (isset($_POST['login'])) {
 				</script>';
 				exit();
 			}
-
 			else {
-				if($data['level']=="admin"){
-					// buat session login dan username
+				$admin=mysqli_query($mysqli,"SELECT * FROM penduduk LEFT JOIN admin ON penduduk.Nik=admin.Nik WHERE admin.username='$username' AND admin.password='$password' ");
+				$ambiladmin=mysqli_fetch_array($admin);
+
+				if ($username==$ambiladmin['username'] AND $password==$ambiladmin['password']) {
 					$_SESSION['username'] = $username;
-					$_SESSION['nama_user'] = $data['Nama'];
+					$_SESSION['nama_user'] = $ambiladmin['Nama'];
 					$_SESSION['level'] = "admin";
 					// alihkan ke halaman admin
 					header("location:../PROYEK-1/admin/index.php");
-
-				// cek jika user login sebagai warga
-				}else if($data['level']=="warga"){
-					// buat session login dan username
-					$_SESSION['username'] = $username;
-					$_SESSION['nama_user'] = $data['Nama'];
-					$_SESSION['level'] = "warga";
-					// alihkan ke halaman warga
-					header("location:../PROYEK-1/warga/index.php");
-				}else{
-					// alihkan ke halaman login kembali
-					echo '<script language="javascript">
-					alert ("Username / Password Salah!");
-					window.location="index.php?pesan=gagal";
-					</script>';
-					exit();
+				}
+				else {
+					echo "Gagal masuk sebagai Admin";
 				}
 			}
-			
 		}
 		else {
-			echo '<script language="javascript">
-					alert ("Username / Password Salah!");
-					window.location="index.php?pesan=gagal";
-					</script>';
-					exit();
-				}
+			echo "Data tidak ada!";
 		}
+	}
+}
+
 ?>

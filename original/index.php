@@ -160,7 +160,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><br><br>
     <!-- ##### Hero Area End ##### -->
 
     <!-- ##### Single Blog Area Start ##### -->
@@ -199,8 +199,13 @@
                             <p>Terbentuknya Desa Ujungaris Catatan sejarah Desa Ujungaris semenjak masa Jabatan sesepuh Kampung yang bernama Suta Mlaya (Kuwu Buto) banyak mengalami kejadian yang baik, bahkan hampir dikatakan tidak ada kejadian buruk yang berarti.</p>
                         </div>
                     </div>
-                    
                 </div>
+
+                <!-- <div class="col-12 col-md-10 col-lg-3">
+                    <div class="post-sidebar-area">
+                        
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -211,6 +216,27 @@
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script>
+        let c = $('.calendar');
+        let calendar = new Calendar(c);
+        // console.log(calendar.getSelectedDate().day);
+        // console.log(c.find(0));
+        c.find('.ok-btn').on('click', function() {console.log(calendar.getSelectedDate().fullDate)});
+    </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36251023-1']);
+      _gaq.push(['_setDomainName', 'jqueryscript.net']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="js/popper.min.js"></script>

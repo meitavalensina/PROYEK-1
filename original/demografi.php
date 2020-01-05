@@ -133,7 +133,7 @@
                             <span class="author-role">Demografi</span>
                             <h4><a href="#" class="author-name">Letak Geografis</a></h4>
                             <p>Desa Ujungaris terletak di Daerah Kawasan Indramayu, dengan luas Wilayah 406 Hektar yang terdiri dari 5 Dusun dengan 5 Rukun Warga (RW) dan 24 Rukun Tetangga (RT) yang merupakan salah satu Desa yang berada di wilayah Kecamatan Widasari Kabupaten Indramayu.</p>
-                            <p>Dengan batas wilayah sbb:</p>
+                            <p>Dengan batas wilayah sbb:</p><br>
                             <div class="card-body overflow-auto p-0" method="post" action="demografi.php">
                               <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -173,10 +173,6 @@
                             <div class="line"></div>
                             <a href="#" class="post-tag">Demografi</a>
                             <h4><a href="#" class="post-headline mb-0">Hidrologi dan Klimatologi</a></h4>
-                            <div class="post-meta mb-50">
-                                <p>By <a href="#">james smith</a></p>
-                                <p>3 comments</p>
-                            </div>
                             <p>Aspek hidrologi wilayah desa sangat diperlukan dalam pengendalian dan pengaturan tata air wilayah desa, berdasarkan hidrologinya, aliran-aliran sungai di wilayah Desa Ujungaris.</p>
 
                             <p>Adapun sumber air yang menghidupi Desa Ujungaris diantaranya :<br>
@@ -212,8 +208,39 @@
 
                     <!-- Comment Area Start -->
                     <div class="comment_area clearfix mt-70">
-                        <h5 class="title">Peta Desa Ujungaris</h5>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63430.93045050481!2d108.24065039270965!3d-6.466683702337328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ec65b72ea5f41%3A0x5804af8ff0d23674!2sUjungaris%2C%20Kec.%20Widasari%2C%20Kabupaten%20Indramayu%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1578124522514!5m2!1sid!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                        <div class="card-body overflow-auto p-0">
+                              <table id="example1" class="table table-bordered table-striped" style="text-align: center;">
+                                <thead>
+                                <tr>
+                                  <th colspan="3"><b>Sawah (Ha)</b></th>
+                                  <th colspan="5"><b>Darat (Ha)</b></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1/2 Teknis</td>
+                                    <td>Tadah Hujan</td>
+                                    <td>Pasang Surut</td>
+                                    <td>Pemukiman</td>
+                                    <td>Pertanian</td>
+                                    <td>Perkantoran</td>
+                                    <td>Perkebunan</td>
+                                    <td>Lainnya</td>
+                                </tr>
+                                <tr>
+                                    <td>136.6</td>
+                                    <td>29</td>
+                                    <td>-</td>
+                                    <td>29,609</td>
+                                    <td>474,00</td>
+                                    <td>0,203</td>
+                                    <td>40</td>
+                                    <td>46.5</td>
+                                </tr>
+                                </tbody>
+                              </table><br>
+                            </div>
+                            <!-- /.card-body -->
                     </div>
                 </div>
             </div>

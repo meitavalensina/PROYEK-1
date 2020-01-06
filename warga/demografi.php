@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if( isset($_SESSION['username']) ){
+        include 'kalender/kalender.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +30,10 @@
             font-size: 16px;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="kalender/kalender.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="kalender/kalender.js"></script>
 </head>
 
 <body>
@@ -44,8 +55,8 @@
                     <div class="col-12 col-sm-8">
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
-                                <ul>
-                                    <li>Hello Warga!</li>
+                                <ul style="font-size: 16px; font-weight: bold;">
+                                   <li>Halo <?php echo $_SESSION['nama_user']; ?>!</li>
                                     <li>Selamat Datang di Sistem Informasi Desa Ujungaris!</li>
                                 </ul>
                             </div>
@@ -76,7 +87,7 @@
 
                         <!-- Subscribe btn -->
                         <div class="subscribe-btn">
-                            <a href="login/index.php" class="btn subscribe-btn">Login</a>
+                            <a href="../logout.php" class="btn subscribe-btn">Logout</a>
                         </div>
 
                         <!-- Navbar Toggler -->
@@ -97,8 +108,8 @@
                                     <li><a href="index.php">Beranda</a></li>
                                     <li><a href="demografi.php">Demografi Desa</a></li>
                                     <li><a href="pemerintah_desa.php">Pemerintahan Desa</a></li>
-                                    <li><a href="gallery.php">Gallery</a></li>
-                                    <li><a href="pw.php">Pengajuan Surat</a></li>
+                                    <li><a href="gallery.php">Galeri</a></li>
+                                    <li><a href="ps.php">Pengajuan Surat</a></li>
                                     <li><a href="pw.php">Pengaduan Warga</a></li>
                                 </ul>
                             </div>
@@ -145,7 +156,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                include_once("koneksi.php");
+                                include_once("../koneksi.php");
 
                                 $result=mysqli_query($mysqli, "SELECT * FROM letak_geografis");
                                 
@@ -243,13 +254,23 @@
                             <!-- /.card-body -->
                     </div>
                 </div>
+                <div class="col-12 col-md-3">
+                    <div class="post-sidebar-area">
+                        <br><br><br><br><br><br><br><br><br>
+                        <?php
+                            echo '<h3>'.tgl_indo(date('Y-m')).'</h3>';
+                            echo draw_calendar(date('m'),date('Y')); 
+                            echo '<br><div id="watch"></div>';
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- ##### Single Blog Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area text-center">Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</footer>
+    <footer class="footer-area text-center" style="font-size: 16px"><b>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</b></footer>
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
@@ -266,3 +287,14 @@
 </body>
 
 </html>
+
+<?php
+    }else{
+        echo "
+            <script>
+                alert('Anda harus login!');
+            </script>
+        ";
+        header('Location: ../index.php');
+    }
+?>

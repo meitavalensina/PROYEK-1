@@ -23,7 +23,7 @@ if (isset($_POST['login'])) {
 		}
 		else {
 			if ($data['level']=="warga") {
-				$warga=mysqli_query($mysqli, "SELECT user_warga.id_user, user_warga.Nik, penduduk.no_kk FROM user_warga JOIN penduduk ON penduduk.Nik=user_warga.Nik WHERE user_warga.Nik='$username' AND penduduk.no_kk='$password'");
+				$warga=mysqli_query($mysqli, "SELECT user_warga.id_user, user_warga.Nik, penduduk.no_kk, penduduk.Nama FROM user_warga JOIN penduduk ON penduduk.Nik=user_warga.Nik WHERE user_warga.Nik='$username' AND penduduk.no_kk='$password'");
 				$ambilwarga=mysqli_fetch_array($warga);
 				if ($username==$ambilwarga['Nik'] AND $password==$ambilwarga['no_kk']) {
 					$_SESSION['username'] = $username;

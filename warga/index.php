@@ -1,213 +1,251 @@
 <?php
     session_start();
     if( isset($_SESSION['username']) ){
+        include 'kalender/kalender.php';
+
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sistem Informasi Desa Ujungaris</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Sistem Informasi Desa Ujungaris</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style type="text/css">
+        p{
+            text-align: justify;
+            font-size: 16px;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="kalender/kalender.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="kalender/kalender.js"></script>
+
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item d-none d-sm-inline-block">
-        <div class="nav-link" style="color: black !important">Sistem Informasi Desa Ujungaris</div>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <div class="nav-link">
-          <?php 
-
-          echo $_SESSION['nama_user'];
-          ?>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preload-content">
+            <div id="original-load"></div>
         </div>
-      </li>
-      <li class="nav-item">
-        <div class="nav-link">
-          <a href="../logout.php"><i class="fas fa-sign-out-alt"></i></a>
-        </div>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #52748D !important">
-    <!-- Brand Logo -->
-    <a class="brand-link">
-      <center><span class="brand-text font-weight-light" style="font-family: Lemon; color: white; font-size: 30px">Ujungaris</span></center>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="index.php" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="pengajuansurat.php" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>Pengajuan Surat</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="pengaduanwarga.php" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>Pengaduan Warga</p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
-  </aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <ol class="breadcrumb float-sm-left">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3><i class="fas fa-table"></i></h3>
-
-                <p>Pengajuan Surat</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="pengajuansurat.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Breaking News Area -->
+                    <div class="col-12 col-sm-8">
+                        <div class="breaking-news-area">
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul style="font-size: 16px; font-weight: bold;">
+                                   <li>Halo <?php echo $_SESSION['nama_user']; ?>!</li>
+                                    <li>Selamat Datang di Sistem Informasi Desa Ujungaris!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3><i class="fas fa-table"></i></h3>
-
-                <p>Pengaduan Warga</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="pengaduanwarga.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
         </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2019 Desa Ujungaris</strong>
-  </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+        <!-- Logo Area -->
+        <div class="logo-area text-center">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <div style="font-family: Lemon; font-size: 50px;">Ujungaris</div>
+                        <div style="font-family: Calibri; font-size: 20px;">Sistem Informasi Desa Ujungaris</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+        <!-- Nav Area -->
+        <div class="original-nav-area" id="stickyNav">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between">
+
+                        <!-- Subscribe btn -->
+                        <div class="subscribe-btn">
+                            <a href="../logout.php" class="btn subscribe-btn">Logout</a>
+                        </div>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu" id="originalNav">
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="index.php">Beranda</a></li>
+                                    <li><a href="demografi.php">Demografi Desa</a></li>
+                                    <li><a href="pemerintah_desa.php">Pemerintahan Desa</a></li>
+                                    <li><a href="gallery.php">Galeri</a></li>
+                                    <li><a href="ps.php">Pengajuan Surat</a></li>
+                                    <li><a href="pw.php">Pengaduan Warga</a></li>
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+    <div class="hero-area">
+        <!-- Hero Slides Area -->
+        <div class="hero-slides owl-carousel">
+            <!-- Single Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(fotodesa/ujungaris1.jpeg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="slide-content text-center">
+                                <div class="post-tag">
+                                    <a href="#" data-animation="fadeInUp">Desa Ujungaris</a>
+                                </div>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="index.php">UJUNGARIS "RAMAH"</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(fotodesa/ujungaris2.jpeg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="slide-content text-center">
+                                <div class="post-tag">
+                                    <a href="#" data-animation="fadeInUp">Desa Ujungaris</a>
+                                </div>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a style="text-transform: none !important;" href="single-post.html">Selamat Datang!</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(fotodesa/ujungaris3.jpeg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="slide-content text-center">
+                                <div class="post-tag">
+                                    <a href="#" data-animation="fadeInUp">Desa Ujungaris</a>
+                                </div>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a style="text-transform: none !important;" href="single-post.html">Ujungaris, Widasari, Indramayu.</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Single Blog Area Start ##### -->
+    <div class="single-blog-wrapper section-padding-0-100">
+        <div class="container">
+            <div class="row">
+                <!-- ##### Post Content Area ##### -->
+                <div class="col-12 col-lg-9">
+                    <!-- Single Blog Area  -->
+                    <div class="single-blog-area blog-style-2 mb-50">
+                        <!-- Blog Content -->
+                        <div class="single-blog-content">
+                            <div class="line"></div>
+                            <a href="#" class="post-tag">Desa Ujungaris</a>
+                            <h4 class="post-headline mb-0">Legenda Desa (Sasakala)</h4>
+                            <div class="post-meta mb-50"></div>
+                            <p>Gusti Sinuhun Sunan Jati Purba ketika itu menghadap ke Cirebon Girang kepada Mbah Kuwu Sangkan untuk berunding atau bermusyawarah demi kemajuan jaman dan untuk perluasan wilayah perdesaan. Oleh Mbah Kuwu Sangkan niatan Sinuhun Jati Purba tersebut akhirnya disetujui dengan alasan untuk perluasan syiar Islam.</p>
+
+                            <p>Akhirnya Sinuhun Sunan Jati Purba memerintahkan 5 (lima) orang santrinya yang berasal dari Bagelen yaitu Ki Sunder, Ki Sakri, Ki Jembrong, Ki Senen dan Ki Jatigede dengan tugas mencari daerah baru untuk membuat perdukuhan.</p>
+
+                            <p>Selanjutnya berangkatlah ke lima santri tersebut menuju kearah Utara menyelusuri sepanjang sungai Cimanuk dengan mengendarai getek (perahu yang dirangkai dengan susunan bambu). Setelah sekian lama menelusuri sungai Cimanuk akhirnya mendaratlah ke lima santri tersebut di sebuah hutan yang bernama hutan Balailiwungan. Konon hutan ini terkenal sangat angker dan jail. Dan akhimya mereka memutuskan untuk membuat sebuah gubug sebagai tempat beristirahat.</p>
+
+                            <p>Setelah selesai menjalankan ibadah sholat Magrib, mereka berunding untuk membuka hutan. Selama para santri Gusti Sinuhun Jati Purba tinggal di hutan Balailiwungan tersebut, segala macam binatang buas, ular dan burung yang sedang terbang sekalipun berjatuhan karena wibawa para santri tersebut.</p>
+
+                            <p>Dikisahkan selama 40 (empat puluh) hari mereka membuka hutan dengan cara membakar hutan. Melalui sebuah keris yang ditancapkan kedalam tanah hingga pembakaran terus meluas. Pribawa keris dan pembakaran hutan membuat semua penghuni hutan lari tunggang langgang Baik para binatang buas maupun Jin dan setan Mekarkayangan menjerit dan menangis kepanasan. Sampai-sampai ke lima santri tersebut merasa aneh dan keheranan.</p>
+
+                            <p>Akhirnya keris tersebut dicabut dari dalam tanah. Terjadilah suatu keanehan ketika keris dicabut ternyata hilang werangkanya (sarung keris). Dan selanjutnya mereka berunding untuk berbagi wilayah dari tanah hutan yang sudah mereka bakar tersebut. Dan untuk gubug yang merekadiami, daerah tersebut mereka namakan gubug/dusun Ujungaris berasal dari keris yang ditancapkan. Dan mereka berucap kelak gubug akan dipindahkan ke sebelah Barat sebagai Balai Desa Ujungaris. Wallahualam bi shawab..</p>
+                        </div>
+                    </div>
+
+                    <div class="blog-post-author mt-100 d-flex">
+                        <div class="author-info">
+                            <div class="line"></div>
+                            <span class="author-role">Desa Ujungaris</span>
+                            <h4 class="author-name">Terbentuknya Desa Ujungaris</h4>
+                            <p>Terbentuknya Desa Ujungaris Catatan sejarah Desa Ujungaris semenjak masa Jabatan sesepuh Kampung yang bernama Suta Mlaya (Kuwu Buto) banyak mengalami kejadian yang baik, bahkan hampir dikatakan tidak ada kejadian buruk yang berarti.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <div class="post-sidebar-area">
+                        <br>
+                        <br>
+                        <?php
+                            echo '<h3>'.tgl_indo(date('Y-m')).'</h3>';
+                            echo draw_calendar(date('m'),date('Y')); 
+                            echo '<br><div id="watch"></div>';
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Single Blog Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area text-center" style="font-size: 16px"><b>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Desa Ujungaris</b></footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+
 </body>
+
 </html>
 
 <?php

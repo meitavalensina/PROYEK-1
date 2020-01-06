@@ -144,12 +144,10 @@
                     <input type="text" name="nik" class="form-control" id="nik" placeholder="Masukan NIK">
                   </div>
                   <div class="form-group">
-<<<<<<< HEAD
                     <label for="IsiAlasan">Alasan</label>
                     <textarea type="text" name="alasan" class="form-control" id="IsiAlasan" placeholder="Masukan Alasan Membuat Surat"></textarea>
                   </div>
                 </div>
-=======
                     <label for="IsiJK">Jenis Kelamin</label>
                       <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -168,12 +166,6 @@
                     <label for="Masukan Alasan">Alasan</label>
                     <textarea type="text" name="Alasan" class="form-control" id="Masukan Alasan" placeholder="Masukan Alasan"></textarea>
                   </div>
-                  <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-                    </div>
->>>>>>> a84075c49ab1d8e161395ae4cb09f453bba2055f
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit">Kirim</button>

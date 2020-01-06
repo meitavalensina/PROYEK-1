@@ -2,7 +2,7 @@
 
 include_once("../koneksi.php");
 
-if (isset($_POST['kirim'])) {
+if (isset($_POST['submit'])) {
 	$nama=$_POST['nama'];
 	$nik=$_POST['nik'];
  	$alasan=$_POST['alasan'];
@@ -14,7 +14,7 @@ if (isset($_POST['kirim'])) {
 
  	$result=mysqli_query($mysqli, "INSERT INTO pengajuan_surat(Nik, tgl_pengajuan_surat, alasan, status) VALUES ('".$ambil['Nik']."', '$tanggal', '$alasan', 'Proses')");
 
- 	header('location:ps.php');
+ 	header('location:pengajuansurat.php');
 }
 
 ?>

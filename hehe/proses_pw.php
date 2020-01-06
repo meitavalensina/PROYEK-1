@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
 
  	$result=mysqli_query($mysqli, "INSERT INTO pengaduan_warga(Nik, Pesan, tgl_pengaduan_warga) VALUES ('".$ambil['Nik']."', '$isi', '$tanggal')");
 
- 	header('location:pw.php');
+ 	header('location:pengaduanwarga.php');
 }
 
 ?>

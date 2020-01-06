@@ -30,14 +30,22 @@ if (isset($_POST['login'])) {
 					$_SESSION['nama_user'] = $ambilwarga['Nama'];
 					$_SESSION['level'] = "warga";
 					// alihkan ke halaman warga
-					header("location:../PROYEK-1/warga/index.php");
+					header("location:warga/index.php");
 				}
 				else {
-					echo "Username/Password Salah!";
+					echo '<script language="javascript">
+					alert ("Username/Password Salah!");
+					window.location="index.php";
+					</script>';
+					exit();
 				}
 			}
 			else {
-				echo "Gagal masuk sebagai warga";
+				echo '<script language="javascript">
+				alert ("Gagal Masuk Sebagai Warga!");
+				window.location="index.php";
+				</script>';
+				exit();
 			}
 		}
 	}
@@ -62,15 +70,23 @@ if (isset($_POST['login'])) {
 					$_SESSION['nama_user'] = $ambiladmin['Nama'];
 					$_SESSION['level'] = "admin";
 					// alihkan ke halaman admin
-					header("location:../PROYEK-1/admin/index.php");
+					header("location:admin/index.php");
 				}
 				else {
-					echo "Gagal masuk sebagai Admin";
+					echo '<script language="javascript">
+					alert ("Username/Password Salah!");
+					window.location="index.php";
+					</script>';
+					exit();
 				}
 			}
 		}
 		else {
-			echo "Data tidak ada!";
+			echo '<script language="javascript">
+			alert ("Gagal Masuk Admin!");
+			window.location="index.php";
+			</script>';
+			exit();
 		}
 	}
 }

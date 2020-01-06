@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2020 at 09:45 AM
+-- Generation Time: Jan 07, 2020 at 12:56 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -112,14 +112,36 @@ INSERT INTO `letak_geografis` (`id_lg`, `batas`, `desa`, `kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `log_ps`
+--
+
+CREATE TABLE `log_ps` (
+  `id_ps` int(11) NOT NULL,
+  `Nik` varchar(20) NOT NULL,
+  `tgl_pengajuan_surat` datetime NOT NULL,
+  `alasan` text NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `waktu` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `log_ps`
+--
+
+INSERT INTO `log_ps` (`id_ps`, `Nik`, `tgl_pengajuan_surat`, `alasan`, `status`, `waktu`) VALUES
+(3, '3211234098876576', '2020-01-06 08:33:39', 'Nggo mangkat meng Jepang', 'Surat Sudah Diterima', '2020-01-07 05:17:13');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `penduduk`
 --
 
 CREATE TABLE `penduduk` (
   `id_penduduk` int(11) NOT NULL,
-  `no_kk` varchar(20) NOT NULL,
   `Nama` varchar(100) NOT NULL,
   `Nik` varchar(20) NOT NULL,
+  `no_kk` varchar(20) DEFAULT NULL,
   `Jenis_kelamin` varchar(20) NOT NULL,
   `Tanggal_lahir` date NOT NULL,
   `Agama` varchar(10) NOT NULL,
@@ -138,13 +160,17 @@ CREATE TABLE `penduduk` (
 -- Dumping data for table `penduduk`
 --
 
-INSERT INTO `penduduk` (`id_penduduk`, `no_kk`, `Nama`, `Nik`, `Jenis_kelamin`, `Tanggal_lahir`, `Agama`, `Pendidikan`, `Pekerjaan`, `Status_perkawinan`, `Status_hub_kel`, `Kewarganegaraan`, `Nama_Ayah`, `Nama_Ibu`, `Alamat`, `level`) VALUES
-(5, '3210778650098557', 'H. Tatang Tarkilah', '3210778650000861', 'Laki-Laki', '1978-01-12', 'Islam', 'SMA/Sederajat', 'Pejabat Desa', 'Kawin', 'Ayah', 'WNI', '', '', 'Blok Tiga', 'warga'),
-(4, '3210000000000123', 'Eva Fadillah Asriyantie', '3211234098876576', 'Perempuan', '1998-05-11', 'Islam', 'SMA/Sederajat', 'Karyawan', 'Belum Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Dua', 'warga'),
-(3, '', 'Nada Qonita Amalia', '3212074104000001', 'Perempuan', '2000-04-01', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Muzaki', 'Marwiyah', '', 'admin'),
-(0, '3210000000000126', 'Contoh', '3212074104045678', 'Laki-Laki', '1999-12-29', 'Budha', 'SMA/Sederajat', 'Karyawan', 'Belum Kawin', 'Anak', 'WNA', 'Ini', 'Itu', 'Apa', 'warga'),
-(1, '', 'Lufita Alif Nurjannah', '3212098765489', 'Perempuan', '2000-01-12', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', '', '', '', 'admin'),
-(2, '', 'Meita Valensina', '3212135005000008', 'Perempuan', '2000-05-10', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Edi', 'Esih Rohaesih', '', 'admin');
+INSERT INTO `penduduk` (`id_penduduk`, `Nama`, `Nik`, `no_kk`, `Jenis_kelamin`, `Tanggal_lahir`, `Agama`, `Pendidikan`, `Pekerjaan`, `Status_perkawinan`, `Status_hub_kel`, `Kewarganegaraan`, `Nama_Ayah`, `Nama_Ibu`, `Alamat`, `level`) VALUES
+(5, 'H. Tatang Tarkilah', '3210778650000861', '3210778650098557', 'Laki-Laki', '1978-01-12', 'Islam', 'SMA/Sederajat', 'Pejabat Desa', 'Kawin', 'Ayah', 'WNI', '', '', 'Blok Tiga', 'warga'),
+(4, 'Eva Fadillah Asriyantie', '3211234098876576', '321207510598001', 'Perempuan', '1998-05-11', 'Islam', 'SLTA/SEDERAJAT', 'Karyawan', 'Belum Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
+(0, 'Asrori', '3212071301730001', '3212072906100012', 'Laki-Laki', '1973-01-13', 'Islam', 'SLTP/SEDERAJAT', 'Wiraswasta', 'Kawin', 'Kepala Keluarga', 'WNI', 'H. Zaenudin', 'Hj. Faridah', 'Blok Balai desa RT 001 / RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode Pos 45271', 'warga'),
+(0, 'Muhammad Rafli Azzamy', '3212072201130001', '3212072906100012', 'Laki-Laki', '2013-01-22', 'Islam', 'TIDAK/BLM SEKOLAH', 'Belum/tidak bekerja', 'Belum Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
+(0, 'Muhammad Farrel Hafizh', '3212072704090001', '3212072906100012', 'Laki-Laki', '2009-04-27', 'Islam', 'BELUM TAMAT SEDERAJAT', 'Pelajar', 'Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
+(3, 'Nada Qonita Amalia', '3212074104000001', '', 'Perempuan', '2000-04-01', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Muzaki', 'Marwiyah', '', 'admin'),
+(0, 'Contoh', '3212074104045678', '3210000000000126', 'Laki-Laki', '1999-12-29', 'Budha', 'SMA/Sederajat', 'Karyawan', 'Belum Kawin', 'Anak', 'WNA', 'Ini', 'Itu', 'Apa', 'warga'),
+(0, 'Ruijah', '3212076905800001', '3212072906100012', 'Perempuan', '1980-05-29', 'Islam', 'SLTP/SEDERAJAT', 'Mengurus Rumah Tangga', 'Kawin', 'Istri', 'WNI', 'Masrim', 'Wartani', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
+(1, 'Lufita Alif Nurjannah', '3212098765489', '', 'Perempuan', '2000-01-12', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', '', '', '', 'admin'),
+(2, 'Meita Valensina', '3212135005000008', '', 'Perempuan', '2000-05-10', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Edi', 'Esih Rohaesih', '', 'admin');
 
 -- --------------------------------------------------------
 
@@ -160,16 +186,6 @@ CREATE TABLE `pengaduan_warga` (
   `status` enum('Belum Dibaca','Sudah Dibaca') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `pengaduan_warga`
---
-
-INSERT INTO `pengaduan_warga` (`id_pw`, `Nik`, `Pesan`, `tgl_pengaduan_warga`, `status`) VALUES
-(1, '3211234098876576', 'Pak Kuwu ana kucing ning Gg. H. Zaenudin', '2020-01-01 04:17:50', 'Sudah Dibaca'),
-(2, '3211234098876576', 'Alhamdulillah lancar pak Kuwu...', '2020-01-03 07:43:49', 'Sudah Dibaca'),
-(3, '3211234098876576', 'Lagi bengi ana kuntilanak pak Kuwu ning Gg. H. Zaenudin', '2020-01-03 07:44:24', 'Sudah Dibaca'),
-(16, '3211234098876576', 'sacdsfsd', '2020-01-06 08:53:22', 'Belum Dibaca');
-
 -- --------------------------------------------------------
 
 --
@@ -181,7 +197,7 @@ CREATE TABLE `pengajuan_surat` (
   `Nik` varchar(20) NOT NULL,
   `tgl_pengajuan_surat` datetime NOT NULL,
   `alasan` text NOT NULL,
-  `status` enum('Proses','Pembuatan Surat Diterima','Pembuatan Surat Ditolak','Surat Dibuat','Surat Jadi','Surat Dikirim') NOT NULL
+  `status` enum('Diproses','Diterima','Ditolak','Surat Sedang Dibuat','Surat Sudah Jadi','Surat Dikirim','Surat Sudah Diterima Warga') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -189,9 +205,17 @@ CREATE TABLE `pengajuan_surat` (
 --
 
 INSERT INTO `pengajuan_surat` (`id_ps`, `Nik`, `tgl_pengajuan_surat`, `alasan`, `status`) VALUES
-(1, '3212074104000001', '2020-01-03 07:45:33', 'Buat Beasiswa Masuk Perguruan Tinggi', 'Pembuatan Surat Diterima'),
-(2, '3212074104000001', '2020-01-06 08:30:41', 'Untuk beasiswa mendaftar kuliah', 'Proses'),
-(3, '3211234098876576', '2020-01-06 08:33:39', 'Nggo mangkat meng Jepang', 'Proses');
+(1, '3212074104000001', '2020-01-03 07:45:33', 'Buat Beasiswa Masuk Perguruan Tinggi', 'Diterima'),
+(2, '3212074104000001', '2020-01-06 08:30:41', 'Untuk beasiswa mendaftar kuliah', 'Diterima'),
+(6, '3212072704090001', '2020-01-07 06:55:09', 'Beasiswa Daftar SMP', '');
+
+--
+-- Triggers `pengajuan_surat`
+--
+DELIMITER $$
+CREATE TRIGGER `proses_ps` AFTER DELETE ON `pengajuan_surat` FOR EACH ROW INSERT INTO log_ps VALUES (OLD.id_ps, OLD.Nik, OLD.tgl_pengajuan_surat, OLD.alasan, OLD.status, NOW())
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -269,7 +293,9 @@ CREATE TABLE `user_warga` (
 --
 
 INSERT INTO `user_warga` (`id_user`, `Nik`) VALUES
-(2, '3211234098876576');
+(3, '3211234098876576'),
+(4, '3212071301730001'),
+(5, '3212076905800001');
 
 --
 -- Indexes for dumped tables
@@ -380,13 +406,13 @@ ALTER TABLE `letak_geografis`
 -- AUTO_INCREMENT for table `pengaduan_warga`
 --
 ALTER TABLE `pengaduan_warga`
-  MODIFY `id_pw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_pw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  MODIFY `id_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sarana_prasarana`
@@ -404,7 +430,7 @@ ALTER TABLE `struktur_organisasi_detail`
 -- AUTO_INCREMENT for table `user_warga`
 --
 ALTER TABLE `user_warga`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

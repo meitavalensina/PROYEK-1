@@ -37,6 +37,8 @@ if (isset($_SESSION['username'])){
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
@@ -203,26 +205,7 @@ if (isset($_SESSION['username'])){
                 </thead>
                 <tbody>
                 <?php
-                $No=1;
-                while($user_data = mysqli_fetch_array($result)) {         
-                    echo "<tr>";
-                    echo "<td>".$No."</td>";
-                    echo "<td>".$user_data['Nama']."</td>";
-                    echo "<td>".$user_data['Nik']."</td>";
-                    echo "<td>".$user_data['Tanggal_lahir']."</td>";
-                    echo "<td>".$user_data['Jenis_kelamin']."</td>";
-                    echo "<td>".$user_data['tgl_pengajuan_surat']."</td>";
-                    echo "<td>".$user_data['Alamat']."</td>";
-                    echo "<td>".$user_data['alasan']."</td>";
-                    echo "<td>".$user_data['status']."</td>"; 
-                    echo "<td><a href='proses_dpsurat.php?status=psa&id=".$user_data['id_ps']."' class='btn btn-success btn-sm'><i class='fa fa-check-square' aria-hidden='true'></i></a>
-                              <a href='proses_dpsurat.php?status=psn&id=".$user_data['id_ps']."' class='btn btn-danger btn-sm'><i class='fa fa-times' aria-hidden='true'></i></a>
-                              <a href='proses_dpsurat.php?status=sb&id=".$user_data['id_ps']."' class='btn btn-info btn-sm'><i class='fa fa-envelope' aria-hidden='true'></i></a>
-                              <a href='proses_dpsurat.php?status=sj&id=".$user_data['id_ps']."' class='btn btn-info btn-sm'><i class='fa fa-envelope-open' aria-hidden='true'></i></a>
-                              <a href='proses_dpsurat.php?status=sk&id=".$user_data['id_ps']."' class='btn btn-success btn-sm'><i class='fa fa-paper-plane' aria-hidden='true'></i></a></td></tr>";
-                    $No++;
-                }
-                ?>
+                include 'tabel_ps.php'; ?>
                 </tbody>
               </table><br>
             </div>

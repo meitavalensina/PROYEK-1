@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include_once "../koneksi.php";
     if( isset($_SESSION['username']) ){
         include 'kalender/kalender.php';
 
@@ -210,7 +211,11 @@
                                     <p></p>
                                     <div class="post-meta">
                                         <div class="card">
-                                        <div class="card-body"></div></div>
+                                        <div class="card-body" style="font-size: 16px;">
+                                            <?php
+                                            include 'status_surat.php';
+                                            ?>
+                                        </div></div>
                                         <p></p>
                                         <p></p>
                                     </div>

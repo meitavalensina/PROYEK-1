@@ -13,6 +13,14 @@ if (isset($_SESSION['username'])){
     $result = mysqli_query($mysqli, "SELECT pengajuan_surat.id_ps, penduduk.Nama, penduduk.Nik, penduduk.Tanggal_lahir, penduduk.Jenis_kelamin, pengajuan_surat.tgl_pengajuan_surat, penduduk.Alamat, pengajuan_surat.alasan, pengajuan_surat.status FROM pengajuan_surat JOIN penduduk ON penduduk.Nik=pengajuan_surat.Nik");
   }
 
+  if (isset($_POST['search'])) {
+    $search=$_POST['search'];
+    $query = mysqli_query($mysqli, "SELECT * FROM log_ps WHERE status='Surat Sudah Diterima' AND Nik like '%".$search."%' OR tgl_pengajuan_surat like '%".$search."%'");
+  }
+  else{
+    $query = mysqli_query($mysqli, "SELECT * FROM log_ps WHERE status='Surat Sudah Diterima'");
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -105,6 +113,12 @@ if (isset($_SESSION['username'])){
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="akunwarga.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Akun Warga</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="kepaladesa.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white !important">Kepala Desa</p>
@@ -182,7 +196,7 @@ if (isset($_SESSION['username'])){
             <div class="card-header border-top">
               <div class="row">
                 <div class="col-6">
-                  <h3 class="card-title">Data Pengajuan Surat</h3>
+                  <h3 class="card-title">Data Konfirmasi Pengajuan Surat</h3>
                 </div>
               </div>
             </div>
@@ -206,6 +220,63 @@ if (isset($_SESSION['username'])){
                 <tbody>
                 <?php
                 include 'tabel_ps.php'; ?>
+                </tbody>
+              </table><br>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    </section>
+    <!-- /.content -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-title">
+              <form method="post">
+                <div class="input-group p-3">
+                  <input class="form-control" type="text" placeholder="Cari..." name="search" required 
+                    <?php 
+                    if(isset($_POST['search'])){
+                        echo "value='".$_POST['search']."'";
+                    }
+                    ?>>
+                  <div class="input-group-prepend">
+                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+                  </div>
+              </div>
+            </form>
+            </div>
+            <div class="card-header border-top">
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="card-title">Data Pengajuan Surat</h3>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body overflow-auto p-0" method="post" action="dpsurat.php">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIK</th>
+                  <th>Tanggal Pengajuan Surat</th>
+                  <th>Alasan</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                include 'tabel_dps.php'; ?>
                 </tbody>
               </table><br>
             </div>

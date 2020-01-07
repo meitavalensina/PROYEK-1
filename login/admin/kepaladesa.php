@@ -101,6 +101,12 @@ if( isset($_SESSION['username']) ){
               <p style="color: white !important">Kependudukan</p>
             </a>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="akunwarga.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Akun Warga</p>
+            </a>
+          </li>
           <li class="nav-item has-treeview menu-open">
             <a href="kepaladesa.php" class="nav-link active" style="background-color: #6D9BBC">
               <i class="nav-icon fas fa-user"></i>

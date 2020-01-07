@@ -2,9 +2,9 @@
 
 include_once "../koneksi.php";
 
-$id_penduduk=$_GET['id_penduduk'];
+$id=@$_GET['id'];
 
-$result=mysqli_query($mysqli, "DELETE FROM penduduk WHERE id_penduduk='$id_penduduk'");
+$result=mysqli_query($mysqli, "DELETE FROM penduduk WHERE Nik='$'");
 	
 header("Location:kependudukan.php");
 	

@@ -13,6 +13,14 @@ if (isset($_SESSION['username'])){
     $result = mysqli_query($mysqli, "SELECT pengaduan_warga.id_pw, penduduk.Nama, penduduk.Nik, pengaduan_warga.Pesan, pengaduan_warga.tgl_pengaduan_warga, pengaduan_warga.status FROM pengaduan_warga JOIN penduduk ON penduduk.Nik=pengaduan_warga.Nik");
   }
 
+  if (isset($_POST['search'])) {
+    $search=$_POST['search'];
+    $query = mysqli_query($mysqli, "SELECT * FROM log_pw WHERE Nik like '%".$search."%' OR tgl_pengaduan_warga like '%".$search."%'");
+  }
+  else{
+    $query = mysqli_query($mysqli, "SELECT * FROM log_pw");
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -103,6 +111,12 @@ if (isset($_SESSION['username'])){
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="akunwarga.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Akun Warga</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="kepaladesa.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white !important">Kepala Desa</p>
@@ -180,7 +194,7 @@ if (isset($_SESSION['username'])){
             <div class="card-header border-top">
               <div class="row">
                 <div class="col-6">
-                  <h3 class="card-title">Data Pengaduan Warga</h3>
+                  <h3 class="card-title">Data Konfirmasi Pengaduan Warga</h3>
                 </div>
               </div>
             </div>
@@ -209,7 +223,7 @@ if (isset($_SESSION['username'])){
                     echo "<td>".$user_data['Pesan']."</td>";
                     echo "<td>".$user_data['tgl_pengaduan_warga']."</td>"; 
                     echo "<td>".$user_data['status']."</td>"; 
-                    echo "<td><a href='proses_pewarga.php?id=".$user_data['id_pw']."' class='btn btn-success btn-sm'><i class='fa fa-check-square' aria-hidden='true'></i></a>";
+                    echo "<td><a href='proses_pewarga.php?id=".$user_data['id_pw']."' class='btn btn-success btn-sm'><i class='fa fa-check-square' aria-hidden='true'></i></a></td></tr>";
                     $No++;
                 }
                 ?>
@@ -226,6 +240,74 @@ if (isset($_SESSION['username'])){
     </div>
     </section>
     <!-- /.content -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-title">
+              <form method="post">
+                <div class="input-group p-3">
+                  <input class="form-control" type="text" placeholder="Cari..." name="search" required 
+                    <?php 
+                    if(isset($_POST['search'])){
+                        echo "value='".$_POST['search']."'";
+                    }
+                    ?>>
+                  <div class="input-group-prepend">
+                    <input style="background-color: #52748D !important; color: white" class="btn btn-sm" type="submit" value="Cari">
+                  </div>
+              </div>
+            </form>
+            </div>
+            <div class="card-header border-top">
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="card-title">Data Pengaduan Warga</h3>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body overflow-auto p-0" method="post" action="pewarga.php">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIK</th>
+                  <th>Pesan</th>
+                  <th>Tanggal Pengaduan Warga</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $No=1;
+                while($ambil = mysqli_fetch_array($query)) {         
+                    echo "<tr>";
+                    echo "<td>".$No."</td>";
+                    echo "<td>".$ambil['Nik']."</td>";
+                    echo "<td>".$ambil['Pesan']."</td>";
+                    echo "<td>".$ambil['tgl_pengaduan_warga']."</td>"; 
+                    echo "<td>".$ambil['status']."</td></tr>";
+                    $No++;
+                }
+                ?>
+                </tbody>
+              </table><br>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    </section>
+    <!-- /.content -->
+
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">

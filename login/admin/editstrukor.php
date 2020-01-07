@@ -116,6 +116,12 @@ if( isset($_SESSION['username']) ){
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="akunwarga.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Akun Warga</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="kepaladesa.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white !important">Kepala Desa</p>
@@ -198,57 +204,14 @@ if( isset($_SESSION['username']) ){
                     <input type="text" name="masaj" class="form-control" id="IsiMJ" value="<?php echo $strukor['masa_jabatan'];?>" required>
                   </div>
                 </div>
-<<<<<<< HEAD:admin/editstrukor.php
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <input type="hidden" name="id_strukor" value="<?php echo $strukor['id_strukor'];?>">
                   <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="update">Edit</button>
-=======
-                <div class="col-6 p-0 text-right">
-                  <a href="add_perdes.php" style="background-color: #52748D !important; color: white" class="btn btn-sm">Tambah Data</a>
->>>>>>> a84075c49ab1d8e161395ae4cb09f453bba2055f:admin/perangkatdesa.php
                 </div>
               </form> <?php } ?>
             </div>
-<<<<<<< HEAD:admin/editstrukor.php
             <!-- /.card -->
-=======
-            <!-- /.card-header -->
-            <div class="card-body overflow-auto p-0" method="post" action="perangkatdesa.php">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama Lengkap</th>
-                  <th>NIP</th>
-                  <th>Jenis Kelamin</th>
-                  <th>Tanggal Lahir</th>
-                  <th>Pendidikan</th>
-                  <th>Pelatihan</th>
-                  <th>Edit/Hapus Data</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $No=1;
-                while($user_data = mysqli_fetch_array($result)) {         
-                    echo "<tr>";
-                    echo "<td>".$No."</td>";
-                    // echo "<td>".$user_data['id_penduduk']."</td>";
-                    echo "<td>".$user_data['Nama']."</td>";
-                    echo "<td>".$user_data['Nip']."</td>";
-                    echo "<td>".$user_data['Jenis_kelamin']."</td>";
-                    echo "<td>".$user_data['Tanggal_lahir']."</td>"; 
-                    echo "<td>".$user_data['Pendidikan']."</td>"; 
-                    echo "<td>".$user_data['Pelatihan']."</td>";    
-                    echo "<td><a href='editkepdes.php?id_perdes=$user_data[id_perdes]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Edit</a>  <a href='deleteperdes.php?id_perdes=$user_data[id_perdes]' class='btn btn-sm' style='background-color: #52748D !important; color: white'>Delete</a></td></tr>";
-                    $No++;
-                }
-                ?>
-                </tbody>
-              </table><br>
->>>>>>> a84075c49ab1d8e161395ae4cb09f453bba2055f:admin/perangkatdesa.php
-            </div>
           <!--/.col (left) -->
           <!-- right column -->
           <div class="col-md-6">

@@ -96,6 +96,12 @@ if (isset($_SESSION['username'])){
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="akunwarga.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Akun Warga</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="kepaladesa.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white !important">Kepala Desa</p>

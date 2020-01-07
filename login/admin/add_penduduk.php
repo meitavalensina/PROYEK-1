@@ -95,6 +95,12 @@ if( isset($_SESSION['username']) ){
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="akunwarga.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Akun Warga</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="kepaladesa.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white !important">Kepala Desa</p>
@@ -165,16 +171,16 @@ if( isset($_SESSION['username']) ){
               <form role="form" id="quickForm" method="post" action="proses_add_kp.php">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="IsiNKK">No. KK</label>
-                    <input type="text" name="nokk" class="form-control" id="IsiNKK" placeholder="Masukkan No. KK" required>
-                  </div>
-                  <div class="form-group">
                     <label for="IsiNama">Nama Lengkap</label>
                     <input type="text" name="nama" class="form-control" id="IsiNama" placeholder="Masukkan Nama" required>
                   </div>
                   <div class="form-group">
                     <label for="IsiNIK">NIK</label>
                     <input type="text" name="nik" class="form-control" id="IsiNIK" placeholder="Masukkan NIK" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="IsiNKK">No. KK</label>
+                    <input type="text" name="nokk" class="form-control" id="IsiNKK" placeholder="Masukkan No. KK" required>
                   </div>
                   <div class="form-group">
                     <label for="IsiJK">Jenis Kelamin</label>

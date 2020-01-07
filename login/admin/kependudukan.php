@@ -103,6 +103,12 @@ if (isset($_SESSION['username'])){
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="akunwarga.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Akun Warga</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="kepaladesa.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white !important">Kepala Desa</p>
@@ -193,9 +199,9 @@ if (isset($_SESSION['username'])){
                 <thead>
                 <tr style="text-align: center;">
                   <th style="padding-bottom: 50px;">No</th>
-                  <th style="padding-bottom: 50px;">No. KK</th>
                   <th style="padding-bottom: 35px;">Nama Lengkap</th>
                   <th style="padding-bottom: 50px;">NIK</th>
+                  <th style="padding-bottom: 50px;">No. KK</th>
                   <th style="padding-bottom: 35px;">Jenis Kelamin</th>
                   <th style="padding-bottom: 35px;">Tanggal Lahir</th>
                   <th style="padding-bottom: 50px;">Agama</th>
@@ -216,9 +222,9 @@ if (isset($_SESSION['username'])){
                 while($user_data = mysqli_fetch_array($result)) {         
                     echo "<tr>";
                     echo "<td>".$No."</td>";
-                    echo "<td>".$user_data['no_kk']."</td>";
                     echo "<td>".$user_data['Nama']."</td>";
                     echo "<td>".$user_data['Nik']."</td>";
+                    echo "<td>".$user_data['no_kk']."</td>";
                     echo "<td>".$user_data['Jenis_kelamin']."</td>";
                     echo "<td>".$user_data['Tanggal_lahir']."</td>"; 
                     echo "<td>".$user_data['Agama']."</td>"; 
@@ -230,8 +236,8 @@ if (isset($_SESSION['username'])){
                     echo "<td>".$user_data['Nama_Ayah']."</td>";  
                     echo "<td>".$user_data['Nama_Ibu']."</td>";
                     echo "<td>".$user_data['Alamat']."</td>";
-                    echo "<td><a href='editkp.php?id_penduduk=$user_data[id_penduduk]' class='btn btn-success btn-sm'><i class='fa fa-edit' aria-hidden='true'></i></a>
-                              <a href='deletekp.php?id_penduduk=$user_data[id_penduduk]' class='btn btn-danger btn-sm'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
+                    echo "<td><a href='editkp.php?id=$user_data[Nik]' class='btn btn-success btn-sm'><i class='fa fa-edit' aria-hidden='true'></i></a>
+                              <a href='deletekp.php?id=$user_data[Nik]' class='btn btn-danger btn-sm'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
                     $No++;
                 }
                 ?>

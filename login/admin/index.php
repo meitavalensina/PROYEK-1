@@ -92,6 +92,12 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="akunwarga.php" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white !important">Akun Warga</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="kepaladesa.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white !important">Kepala Desa</p>
@@ -179,6 +185,29 @@
               <div class="inner">
                 <?php
 
+                  include_once "../koneksi.php";
+
+                  $qkp=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM user_warga");
+                  $kp=mysqli_fetch_array($qkp);
+
+                  ?>
+                <h3><?php echo $kp['data']; ?></h3>
+
+                <p>Akun Warga</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="akunwarga.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <?php
+
                   $qkd=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM kepala_desa");
                   $kd=mysqli_fetch_array($qkd);
 
@@ -247,6 +276,26 @@
                   ?>
                 <h3><?php echo $dps['data']; ?></h3>
 
+                <p>Data Konfirmasi Pengajuan Surat</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-document"></i>
+              </div>
+              <a href="dpsurat.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <?php
+
+                  $qdps=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM log_ps WHERE status='Surat Sudah Diterima'");
+                  $dps=mysqli_fetch_array($qdps);
+
+                  ?>
+                <h3><?php echo $dps['data']; ?></h3>
+
                 <p>Data Pengajuan Surat</p>
               </div>
               <div class="icon">
@@ -262,6 +311,27 @@
                 <?php
 
                   $qdpw=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM pengaduan_warga");
+                  $dpw=mysqli_fetch_array($qdpw);
+
+                  ?>
+                <h3><?php echo $dpw['data']; ?></h3>
+
+                <p>Data Konfirmasi Pengaduan Warga</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-document"></i>
+              </div>
+              <a href="pewarga.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <?php
+
+                  $qdpw=mysqli_query($mysqli, "SELECT COUNT(*) AS data FROM log_pw");
                   $dpw=mysqli_fetch_array($qdpw);
 
                   ?>

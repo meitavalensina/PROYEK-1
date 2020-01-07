@@ -131,7 +131,7 @@
                     <div class="contact-form">
                         <h5>Isi Pengaduan</h5>
                         <!-- Contact Form -->
-                        <form action="proses_pw.php" method="post" onsubmit="confirm('Kirim Pesan Anda?')">
+                        <form action="proses_pw.php" method="post" onsubmit="alert('Kirim Pesan Anda?')">
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <label for="nama" style="font-size: 14px"><i>Nama</i></label>
@@ -150,6 +150,24 @@
                                 <div class="col-12">
                                     <button type="submit" name="submit" class="btn original-btn">Kirim</button>
                                 </div>
+                                <div class="col-12">
+                                    <div class="single-blog-content mt-50">
+                                        <div class="line"></div>
+                                        <h4 class="post-headline">Info pengaduan saya</h4>
+                                        <p></p>
+                                        <div class="post-meta">
+                                            <div class="card">
+                                                <div class="card-body" style="font-size: 16px;">
+                                                    <?php
+                                                    include 'status_pw.php';
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -166,33 +184,6 @@
                 </div>
             </div>
         </div><br><br>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-9">
-                    <!-- Single Blog Area  -->
-                    <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1000ms">
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Blog Content -->
-                                <div class="single-blog-content mt-50">
-                                    <div class="line"></div>
-                                    <a href="#" class="post-tag">Pengaduan Warga</a>
-                                    <h4 class="post-headline">Status Pengaduan Saya</h4>
-                                    <p></p>
-                                    <div class="post-meta">
-                                        <div class="card">
-                                        <div class="card-body"></div></div>
-                                        <p></p>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
     <!-- ##### Contact Area End ##### -->
 

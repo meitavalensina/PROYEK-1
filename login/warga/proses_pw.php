@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
  	$user=mysqli_query($mysqli, "SELECT * FROM penduduk WHERE Nama='$namap'");
  	$ambil=mysqli_fetch_assoc($user);
 
- 	$result=mysqli_query($mysqli, "INSERT INTO pengaduan_warga(Nik, Pesan, tgl_pengaduan_warga) VALUES ('".$ambil['Nik']."', '$isi', '$tanggal')");
+ 	$result=mysqli_query($mysqli, "INSERT INTO pengaduan_warga(Nik, Pesan, tgl_pengaduan_warga, status) VALUES ('".$ambil['Nik']."', '$isi', '$tanggal', 'Belum Dibaca')");
 
  	header('location:pw.php');
 }

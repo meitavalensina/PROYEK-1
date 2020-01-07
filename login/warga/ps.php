@@ -132,7 +132,7 @@
                     <div class="contact-form">
                         <h5>Isi Pengajuan</h5>
                         <!-- Contact Form -->
-                        <form action="proses_ps.php" method="post" onsubmit="confirm('Kirim Pengajuan Surat Anda?')">
+                        <form action="" method="post" name="InputPengajuan" id="InputPengajuan">
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="group">
@@ -179,6 +179,24 @@
                                 <div class="col-12">
                                     <button type="submit" name="kirim" class="btn original-btn">Kirim</button>
                                 </div>
+                                <div class="col-12">
+                                    <div class="single-blog-content mt-50">
+                                        <div class="line"></div>
+                                        <h4 class="post-headline">Info mengenai surat yang saya ajukan</h4>
+                                        <p></p>
+                                        <div class="post-meta">
+                                            <div class="card">
+                                                <div class="card-body" style="font-size: 16px;">
+                                                    <?php
+                                                    include 'status_surat.php';
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -196,14 +214,12 @@
             </div>
         </div><br><br>
 
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9">
-                    <!-- Single Blog Area  -->
                     <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1000ms">
                         <div class="row">
                             <div class="col-12">
-                                <!-- Blog Content -->
                                 <div class="single-blog-content mt-50">
                                     <div class="line"></div>
                                     <a href="#" class="post-tag">Pengajuan Surat</a>
@@ -213,7 +229,6 @@
                                         <div class="card">
                                         <div class="card-body" style="font-size: 16px;">
                                             <?php
-                                            include 'status_surat.php';
                                             ?>
                                         </div></div>
                                         <p></p>
@@ -225,7 +240,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <!-- ##### Contact Area End ##### -->
 
@@ -250,7 +265,44 @@
     <!-- Google Map js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
     <script src="js/map-active.js"></script>
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('body').delegate('#InputPengajuan','submit',function(e)
+            {
+            e.preventDefault();
+            var nama = document.getElementById("nama").value;
+            var nik = document.getElementById("nik").value;
+            var ttl = document.getElementById("ttl").value;
+            var jk = document.getElementById("jk").value;
+            var alasan = document.getElementById("alasan").value;
+            var r = confirm("Yakin ingin mengirimkan pengajuan ini?");
+            if (r == true) {
+                $.ajax({
+                    url : 'proses_ps.php',
+                    type : "post",
+                    data : {nama:nama, nik:nik, ttl:ttl, jk:jk, alasan:alasan},
+                    async: false,
+                    cache: true,
+                    dataType: 'json',
+                    success : function(data) {
+                    if(!data.error)
+                    {
+                        alert("Berhasil");
+                        location.href='ps.php';
+                    }else
+                    {
+                        alert("Gagal");
+                    }
+                }
+                });
+            }
+            else {
+                alert("Ea");
+            }
+           
+            });
+        });
+    </script>
 </body>
 
 </html>

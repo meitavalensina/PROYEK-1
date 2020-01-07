@@ -23,11 +23,13 @@ if (isset($_POST['login'])) {
 		}
 		else {
 			if ($data['level']=="warga") {
-				$warga=mysqli_query($mysqli, "SELECT user_warga.id_user, user_warga.Nik, penduduk.no_kk, penduduk.Nama FROM user_warga JOIN penduduk ON penduduk.Nik=user_warga.Nik WHERE user_warga.Nik='$username' AND penduduk.no_kk='$password'");
+				$warga=mysqli_query($mysqli, "SELECT user_warga.id_user, user_warga.Nik, penduduk.id_penduduk, penduduk.no_kk, penduduk.Nama FROM user_warga JOIN penduduk ON penduduk.Nik=user_warga.Nik WHERE user_warga.Nik='$username' AND penduduk.no_kk='$password'");
 				$ambilwarga=mysqli_fetch_array($warga);
 				if ($username==$ambilwarga['Nik'] AND $password==$ambilwarga['no_kk']) {
 					$_SESSION['username'] = $username;
+					$_SESSION['id'] = $ambilwarga['id_user'];
 					$_SESSION['nama_user'] = $ambilwarga['Nama'];
+					$_SESSION['Nik'] = $ambilwarga['Nik'];
 					$_SESSION['level'] = "warga";
 					// alihkan ke halaman warga
 					header("location:warga/index.php");
@@ -67,7 +69,9 @@ if (isset($_POST['login'])) {
 
 				if ($username==$ambiladmin['username'] AND $password==$ambiladmin['password']) {
 					$_SESSION['username'] = $username;
+					$_SESSION['id'] = $ambiladmin['id_penduduk'];
 					$_SESSION['nama_user'] = $ambiladmin['Nama'];
+					$_SESSION['Nik'] = $ambiladmin['Nik'];
 					$_SESSION['level'] = "admin";
 					// alihkan ke halaman admin
 					header("location:admin/index.php");

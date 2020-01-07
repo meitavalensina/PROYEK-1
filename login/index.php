@@ -63,15 +63,6 @@
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 					
-					<div class="box-login">
-						<img src="captcha.php" alt="gambar">
-					</div>
-
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="kodecaptcha" name="kodecaptcha" placeholder="kodecaptcha" maxlength="5">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit" name="login">
 							Login

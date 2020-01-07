@@ -260,57 +260,44 @@ include 'kalender/kalender.php';
                             echo '<br><div id="watch"></div>';
                         ?>
                     </div>
-        
-                <div class="post-sidebar-area">
-                    	<div style="font-family: Roboto,sans-serif; font-size: 14px; line-height: 1; margin-top: 0px;
-    					border-bottom: 3px solid #D10000;">
-            			<br>
-            			<br>
-    					<span style="background-color: #D10000; padding : 8px 8px 0 8px; color : #fff; line-height: 27px; display:inline-block;">
-       				CONTACT US
-       				<br>
-    				</span>
-    				<br>
-				</div>
-				<div class="post-sidebar-area">
-						<br>
-						<div style="font-family: Roboto,sans-serif; font-size: 14px; line-height: 1; margin-top: 0px;
+                    <div class="post-sidebar-area">
+                        <div style="font-family: Roboto,sans-serif; font-size: 14px; line-height: 1; margin-top: 0px;
+    					border-bottom: 3px solid #D10000;"><br><br>
+                        <span style="background-color: #D10000; padding : 8px 8px 0 8px; color : #fff; line-height: 27px; display:inline-block;">CONTACT US<br></span><br>
+                        </div>
+                    </div>
+                    <div class="post-sidebar-area">
+                        <br>
+                        <div style="font-family: Roboto,sans-serif; font-size: 14px; line-height: 1; margin-top: 0px;
     					border: 3px solid #B22222;">
-    					<span style="background-color: ; padding : 8px 8px 0 8px; color : black; line-height: 27px; display:inline-block; border: #B22222">
-       					<img src="email.jpg" height="20px" width="20px"> Email : lufitaalif@gmail.com
-       					<br>
-       					<img src="email.jpg" height="20px" width="20px"> Email : valensinam@gmail.com
-       					<br>
-       					<img src="email.jpg"height="20px" width="20px">  Email : nadaqonita01@gmail.com
-       					<br>
-       					
-    				</span>
-					</div>
-				<div class="post-sidebar-area">
-    					<div style="font-family: Roboto,sans-serif; font-size: 14px; line-height: 1; margin-top: 0px;
-    					border-bottom: 3px solid #D10000;">
-            			<br>
-            			<br>
-    					<span style="background-color: #D10000; padding : 8px 8px 0 8px; color : #fff; line-height: 27px; display:inline-block;">
-    					Dokumentasi Desa
-				       </span>
-					</div>
-					<div>
-						<frameset cols="25%,*">
-            			<frame src="index.php" name="kiri" noresize="noresize">
-            			<frame src="gallery.php" name="kanan">
-    					</frameset>
-    					<br>
-						<div style="font-family: Roboto,sans-serif; font-size: 14px; line-height: 1; margin-top: 0px;
+                        <span style="background-color: ; padding : 8px 8px 0 8px; color : black; line-height: 27px; display:inline-block; border: #B22222">
+                            <img src="email.jpg" height="20px" width="20px"> Email : lufitaalif@gmail.com <br>
+                            <img src="email.jpg" height="20px" width="20px"> Email : valensinam@gmail.com <br>
+                            <img src="email.jpg"height="20px" width="20px">  Email : nadaqonita01@gmail.com<br>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="post-sidebar-area">
+                        <div style="font-family: Roboto,sans-serif; font-size: 14px; line-height: 1; margin-top: 0px;
+    					border-bottom: 3px solid #D10000;"><br><br>
+                        <span style="background-color: #D10000; padding : 8px 8px 0 8px; color : #fff; line-height: 27px; display:inline-block;">Dokumentasi Desa
+                        </span>
+                        </div>
+                    </div>
+                    <div>
+                        <frameset cols="25%,*">
+                            <frame src="index.php" name="kiri" noresize="noresize">
+                            <frame src="gallery.php" name="kanan">
+                        </frameset><br>
+                        <div style="font-family: Roboto,sans-serif; font-size: 14px; line-height: 1; margin-top: 0px;
     					border: 3px solid #B22222;">
-    					<span style="background-color: ; padding : 8px 8px 0 8px; color : black; line-height: 27px; display:inline-block; border: #B22222">
-    					<img src="fotodesa/perbaikan.jpeg">
-    					<a href="gallery.php" target="kanan"> Lihat Selengkapnya...</a>
-				</span>
-			</div>
-		</div>
+                        <span style="background-color: ; padding : 8px 8px 0 8px; color : black; line-height: 27px; display:inline-block; border: #B22222">
+                            <img src="fotodesa/perbaikan.jpeg">
+                            <a href="gallery.php" target="kanan"> Lihat Selengkapnya...</a>
+                        </span>
+                    </div></div>
+                </div>
             </div>
-
         </div>
     </div>
     <!-- ##### Single Blog Area End ##### -->

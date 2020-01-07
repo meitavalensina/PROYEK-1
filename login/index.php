@@ -17,7 +17,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="fix.png">
+	<link rel="icon" type="image/png" href="favicon.ico">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -46,7 +46,7 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="post" action="login.php">
 					<span class="login100-form-logo">
-						<img src="fix.png">
+						<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27" style="font-size: 30px; text-transform: none;">

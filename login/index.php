@@ -69,6 +69,12 @@
 						</button>
 					</div>
 
+					<div class="text-center p-t-90">
+						<a class="txt1" href="../index.php">
+							Kembali ke Beranda
+						</a>
+					</div>
+
 				</form>
 			</div>
 		</div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2020 at 12:56 AM
+-- Generation Time: Jan 07, 2020 at 07:02 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -129,7 +129,42 @@ CREATE TABLE `log_ps` (
 --
 
 INSERT INTO `log_ps` (`id_ps`, `Nik`, `tgl_pengajuan_surat`, `alasan`, `status`, `waktu`) VALUES
-(3, '3211234098876576', '2020-01-06 08:33:39', 'Nggo mangkat meng Jepang', 'Surat Sudah Diterima', '2020-01-07 05:17:13');
+(3, '3211234098876576', '2020-01-06 08:33:39', 'Nggo mangkat meng Jepang', 'Surat Sudah Diterima', '2020-01-07 05:17:13'),
+(6, '3212072704090001', '2020-01-07 06:55:09', 'Beasiswa Daftar SMP', '', '2020-01-07 07:01:10'),
+(1, '3212074104000001', '2020-01-03 07:45:33', 'Buat Beasiswa Masuk Perguruan Tinggi', 'Diterima', '2020-01-07 08:55:59'),
+(2, '3212074104000001', '2020-01-06 08:30:41', 'Untuk beasiswa mendaftar kuliah', 'Diterima', '2020-01-07 08:55:59'),
+(7, '3212072704090001', '2020-01-07 07:02:21', 'Beasiswa Tidak mampu SMP', 'Surat Sudah Diterima', '2020-01-07 08:55:59'),
+(8, '3212074104000001', '2020-01-07 08:14:00', 'y', 'Diproses', '2020-01-07 08:55:59'),
+(9, '3212074104000001', '2020-01-07 08:44:18', 'fbrefbert', 'Diproses', '2020-01-07 08:55:59'),
+(12, '3212072704090001', '2020-01-07 23:12:58', 'beasiswa tidak mampu pak', 'Diterima', '2020-01-07 23:26:26'),
+(11, '3212074104000001', '2020-01-07 22:57:12', 'beasiswa', 'Diterima', '2020-01-07 23:26:33'),
+(13, '3212072704090001', '2020-01-07 23:27:18', 'beasiswa masuk smp', 'Surat Sudah Diterima', '2020-01-07 23:30:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log_pw`
+--
+
+CREATE TABLE `log_pw` (
+  `id_pw` int(11) NOT NULL,
+  `Nik` varchar(20) NOT NULL,
+  `Pesan` varchar(200) NOT NULL,
+  `tgl_pengaduan_warga` datetime NOT NULL,
+  `status` varchar(15) NOT NULL,
+  `waktu` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `log_pw`
+--
+
+INSERT INTO `log_pw` (`id_pw`, `Nik`, `Pesan`, `tgl_pengaduan_warga`, `status`, `waktu`) VALUES
+(18, '3211234098876576', 'bismillah proyek', '2020-01-07 23:43:39', 'Sudah Dibaca', '2020-01-08 00:19:37'),
+(21, '3211234098876576', 'coba lagee', '2020-01-08 00:22:09', 'Sudah Dibaca', '2020-01-08 00:22:33'),
+(22, '3211234098876576', 'kumau dia', '2020-01-08 00:23:24', 'Sudah Dibaca', '2020-01-08 00:28:13'),
+(23, '3211234098876576', 'aa', '2020-01-08 00:29:20', 'Sudah Dibaca', '2020-01-08 00:29:40'),
+(24, '3211234098876576', 'hehe', '2020-01-08 00:38:17', 'Sudah Dibaca', '2020-01-08 00:38:55');
 
 -- --------------------------------------------------------
 
@@ -166,7 +201,7 @@ INSERT INTO `penduduk` (`id_penduduk`, `Nama`, `Nik`, `no_kk`, `Jenis_kelamin`, 
 (0, 'Asrori', '3212071301730001', '3212072906100012', 'Laki-Laki', '1973-01-13', 'Islam', 'SLTP/SEDERAJAT', 'Wiraswasta', 'Kawin', 'Kepala Keluarga', 'WNI', 'H. Zaenudin', 'Hj. Faridah', 'Blok Balai desa RT 001 / RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode Pos 45271', 'warga'),
 (0, 'Muhammad Rafli Azzamy', '3212072201130001', '3212072906100012', 'Laki-Laki', '2013-01-22', 'Islam', 'TIDAK/BLM SEKOLAH', 'Belum/tidak bekerja', 'Belum Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
 (0, 'Muhammad Farrel Hafizh', '3212072704090001', '3212072906100012', 'Laki-Laki', '2009-04-27', 'Islam', 'BELUM TAMAT SEDERAJAT', 'Pelajar', 'Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
-(3, 'Nada Qonita Amalia', '3212074104000001', '', 'Perempuan', '2000-04-01', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Muzaki', 'Marwiyah', '', 'admin'),
+(3, 'Nada Qonita Amalia', '3212074104000001', 'e', 'Perempuan', '2000-04-01', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Muzaki', 'Marwiyah', '', 'admin'),
 (0, 'Contoh', '3212074104045678', '3210000000000126', 'Laki-Laki', '1999-12-29', 'Budha', 'SMA/Sederajat', 'Karyawan', 'Belum Kawin', 'Anak', 'WNA', 'Ini', 'Itu', 'Apa', 'warga'),
 (0, 'Ruijah', '3212076905800001', '3212072906100012', 'Perempuan', '1980-05-29', 'Islam', 'SLTP/SEDERAJAT', 'Mengurus Rumah Tangga', 'Kawin', 'Istri', 'WNI', 'Masrim', 'Wartani', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
 (1, 'Lufita Alif Nurjannah', '3212098765489', '', 'Perempuan', '2000-01-12', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', '', '', '', 'admin'),
@@ -186,6 +221,14 @@ CREATE TABLE `pengaduan_warga` (
   `status` enum('Belum Dibaca','Sudah Dibaca') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Triggers `pengaduan_warga`
+--
+DELIMITER $$
+CREATE TRIGGER `proses_pw` AFTER DELETE ON `pengaduan_warga` FOR EACH ROW INSERT INTO log_pw VALUES (OLD.id_pw, OLD.Nik, OLD.pesan, OLD.tgl_pengaduan_warga, OLD.status, NOW())
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -197,17 +240,9 @@ CREATE TABLE `pengajuan_surat` (
   `Nik` varchar(20) NOT NULL,
   `tgl_pengajuan_surat` datetime NOT NULL,
   `alasan` text NOT NULL,
-  `status` enum('Diproses','Diterima','Ditolak','Surat Sedang Dibuat','Surat Sudah Jadi','Surat Dikirim','Surat Sudah Diterima Warga') NOT NULL
+  `status` enum('Diproses','Diterima','Ditolak','Surat Sedang Dibuat','Surat Sudah Jadi','Surat Dikirim','Surat Sudah Diterima Warga') NOT NULL,
+  `id_pengaju` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pengajuan_surat`
---
-
-INSERT INTO `pengajuan_surat` (`id_ps`, `Nik`, `tgl_pengajuan_surat`, `alasan`, `status`) VALUES
-(1, '3212074104000001', '2020-01-03 07:45:33', 'Buat Beasiswa Masuk Perguruan Tinggi', 'Diterima'),
-(2, '3212074104000001', '2020-01-06 08:30:41', 'Untuk beasiswa mendaftar kuliah', 'Diterima'),
-(6, '3212072704090001', '2020-01-07 06:55:09', 'Beasiswa Daftar SMP', '');
 
 --
 -- Triggers `pengajuan_surat`
@@ -345,7 +380,8 @@ ALTER TABLE `pengaduan_warga`
 --
 ALTER TABLE `pengajuan_surat`
   ADD PRIMARY KEY (`id_ps`),
-  ADD KEY `Nik` (`Nik`);
+  ADD KEY `Nik` (`Nik`),
+  ADD KEY `id_pengaju` (`id_pengaju`);
 
 --
 -- Indexes for table `sarana_prasarana`
@@ -406,13 +442,13 @@ ALTER TABLE `letak_geografis`
 -- AUTO_INCREMENT for table `pengaduan_warga`
 --
 ALTER TABLE `pengaduan_warga`
-  MODIFY `id_pw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_pw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  MODIFY `id_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `sarana_prasarana`
@@ -458,7 +494,8 @@ ALTER TABLE `pengaduan_warga`
 -- Constraints for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  ADD CONSTRAINT `pengajuan_surat_ibfk_4` FOREIGN KEY (`Nik`) REFERENCES `penduduk` (`Nik`);
+  ADD CONSTRAINT `pengajuan_surat_ibfk_4` FOREIGN KEY (`Nik`) REFERENCES `penduduk` (`Nik`),
+  ADD CONSTRAINT `pengajuan_surat_ibfk_5` FOREIGN KEY (`id_pengaju`) REFERENCES `user_warga` (`id_user`);
 
 --
 -- Constraints for table `sarana_prasarana`

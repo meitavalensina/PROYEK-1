@@ -4,7 +4,7 @@
 	if (($_SESSION['username']!==null)||($_SESSION['username']!="")) {
 		if ($_SESSION['level']=="admin") {
 			header("location:admin/");
-		}else{
+		}elseif ($_SESSION['level']=="warga") {
 			header("location:warga/");
 		}
 	}

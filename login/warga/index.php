@@ -1,6 +1,7 @@
 <?php
-    session_start();        
-    if( isset($_SESSION['level']) ){
+    session_start();
+    
+    if( isset($_SESSION['username']) ){
         include 'kalender/kalender.php';
 
 ?>
@@ -19,7 +20,7 @@
     <title>Sistem Informasi Desa Ujungaris</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" type="image/png" href="../fix.png">
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="style.css">

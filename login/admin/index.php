@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if( isset($_SESSION['level']) ){
+    if( isset($_SESSION['username']) ){
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
   <title>Sistem Informasi Desa Ujungaris</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="icon" type="image/png" href="../fix.png">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

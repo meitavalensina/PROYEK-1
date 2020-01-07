@@ -8,10 +8,10 @@ session_destroy();
 // mengalihkan halaman ke halaman login
 
 if ($_SESSION['level']=="admin") {
-	header("location:index.php");
+	header("location:index.php?pesan=logout");
 }
 elseif ($_SESSION['level']=="warga") {
-	header("location:../index.php");
+	header("location:../index.php?pesan=logout");
 }
 else {
 	echo '<script language="javascript">

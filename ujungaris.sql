@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2020 at 07:02 PM
+-- Generation Time: Jan 08, 2020 at 02:03 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -84,7 +84,7 @@ CREATE TABLE `kepala_desa` (
 --
 
 INSERT INTO `kepala_desa` (`id_kepdes`, `Nik`, `Nip`, `Pelatihan`) VALUES
-(1, '3210778650000861', '1809765', 'Pramuka');
+(1, '3210778650000861', '1809765', '-');
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,8 @@ INSERT INTO `log_ps` (`id_ps`, `Nik`, `tgl_pengajuan_surat`, `alasan`, `status`,
 (9, '3212074104000001', '2020-01-07 08:44:18', 'fbrefbert', 'Diproses', '2020-01-07 08:55:59'),
 (12, '3212072704090001', '2020-01-07 23:12:58', 'beasiswa tidak mampu pak', 'Diterima', '2020-01-07 23:26:26'),
 (11, '3212074104000001', '2020-01-07 22:57:12', 'beasiswa', 'Diterima', '2020-01-07 23:26:33'),
-(13, '3212072704090001', '2020-01-07 23:27:18', 'beasiswa masuk smp', 'Surat Sudah Diterima', '2020-01-07 23:30:20');
+(13, '3212072704090001', '2020-01-07 23:27:18', 'beasiswa masuk smp', 'Surat Sudah Diterima', '2020-01-07 23:30:20'),
+(14, '3211234098876576', '2020-01-08 02:46:51', 'beasiswa meng Jepang', 'Surat Sudah Diterima', '2020-01-08 02:47:19');
 
 -- --------------------------------------------------------
 
@@ -196,13 +197,13 @@ CREATE TABLE `penduduk` (
 --
 
 INSERT INTO `penduduk` (`id_penduduk`, `Nama`, `Nik`, `no_kk`, `Jenis_kelamin`, `Tanggal_lahir`, `Agama`, `Pendidikan`, `Pekerjaan`, `Status_perkawinan`, `Status_hub_kel`, `Kewarganegaraan`, `Nama_Ayah`, `Nama_Ibu`, `Alamat`, `level`) VALUES
+(0, 'jijiii', '321', '345', 'Laki-Laki', '2000-01-01', 'Islam', 'SMA/Sederajat', 'Karyawan', 'Belum Kawin', 'Anak', 'WNI', 'Itu', 'Ini', 'jknjkn.', 'warga'),
 (5, 'H. Tatang Tarkilah', '3210778650000861', '3210778650098557', 'Laki-Laki', '1978-01-12', 'Islam', 'SMA/Sederajat', 'Pejabat Desa', 'Kawin', 'Ayah', 'WNI', '', '', 'Blok Tiga', 'warga'),
 (4, 'Eva Fadillah Asriyantie', '3211234098876576', '321207510598001', 'Perempuan', '1998-05-11', 'Islam', 'SLTA/SEDERAJAT', 'Karyawan', 'Belum Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
 (0, 'Asrori', '3212071301730001', '3212072906100012', 'Laki-Laki', '1973-01-13', 'Islam', 'SLTP/SEDERAJAT', 'Wiraswasta', 'Kawin', 'Kepala Keluarga', 'WNI', 'H. Zaenudin', 'Hj. Faridah', 'Blok Balai desa RT 001 / RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode Pos 45271', 'warga'),
 (0, 'Muhammad Rafli Azzamy', '3212072201130001', '3212072906100012', 'Laki-Laki', '2013-01-22', 'Islam', 'TIDAK/BLM SEKOLAH', 'Belum/tidak bekerja', 'Belum Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
 (0, 'Muhammad Farrel Hafizh', '3212072704090001', '3212072906100012', 'Laki-Laki', '2009-04-27', 'Islam', 'BELUM TAMAT SEDERAJAT', 'Pelajar', 'Kawin', 'Anak', 'WNI', 'Asrori', 'Ruijah', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
 (3, 'Nada Qonita Amalia', '3212074104000001', 'e', 'Perempuan', '2000-04-01', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Muzaki', 'Marwiyah', '', 'admin'),
-(0, 'Contoh', '3212074104045678', '3210000000000126', 'Laki-Laki', '1999-12-29', 'Budha', 'SMA/Sederajat', 'Karyawan', 'Belum Kawin', 'Anak', 'WNA', 'Ini', 'Itu', 'Apa', 'warga'),
 (0, 'Ruijah', '3212076905800001', '3212072906100012', 'Perempuan', '1980-05-29', 'Islam', 'SLTP/SEDERAJAT', 'Mengurus Rumah Tangga', 'Kawin', 'Istri', 'WNI', 'Masrim', 'Wartani', 'Blok Balai desa RT 001/RW 002 desa Ujungaris Kec. Widasari Kab. Indramayu Kode pos 45271', 'warga'),
 (1, 'Lufita Alif Nurjannah', '3212098765489', '', 'Perempuan', '2000-01-12', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', '', '', '', 'admin'),
 (2, 'Meita Valensina', '3212135005000008', '', 'Perempuan', '2000-05-10', 'Islam', 'SMA/Sederajat', 'Mahasiswa', 'Belum Kawin', 'Anak', 'WNI', 'Edi', 'Esih Rohaesih', '', 'admin');
@@ -289,8 +290,7 @@ CREATE TABLE `struktur_organisasi` (
 --
 
 INSERT INTO `struktur_organisasi` (`id_strukor`, `Jabatan`) VALUES
-(1, 'Kepala Desa'),
-(6, 'Sekertaris');
+(1, 'Kepala Desa');
 
 -- --------------------------------------------------------
 
@@ -309,8 +309,7 @@ CREATE TABLE `struktur_organisasi_detail` (
 --
 
 INSERT INTO `struktur_organisasi_detail` (`id_strukor`, `Nik`, `masa_jabatan`) VALUES
-(1, '3210778650000861', '2015-2021'),
-(6, '3212074104000001', '2030-2035');
+(1, '3210778650000861', '2015-2021');
 
 -- --------------------------------------------------------
 
@@ -430,7 +429,7 @@ ALTER TABLE `kategori_sarpras`
 -- AUTO_INCREMENT for table `kepala_desa`
 --
 ALTER TABLE `kepala_desa`
-  MODIFY `id_kepdes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kepdes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `letak_geografis`
@@ -448,7 +447,7 @@ ALTER TABLE `pengaduan_warga`
 -- AUTO_INCREMENT for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  MODIFY `id_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `sarana_prasarana`
@@ -466,7 +465,7 @@ ALTER TABLE `struktur_organisasi_detail`
 -- AUTO_INCREMENT for table `user_warga`
 --
 ALTER TABLE `user_warga`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

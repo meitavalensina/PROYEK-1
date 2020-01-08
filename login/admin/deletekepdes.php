@@ -6,7 +6,7 @@ $id_kepdes=$_GET['id_kepdes'];
 
 $result=mysqli_query($mysqli, "DELETE FROM kepala_desa WHERE id_kepdes='$id_kepdes'");
 	
-header("Location:kepaladesa.php");
+header("Location:kepaladesa.php?pesan=delete");
 	
 exit;
 

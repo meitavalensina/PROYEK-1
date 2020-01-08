@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if( isset($_SESSION['username']) ){
+    if( isset($_SESSION['username']) && $_SESSION['level'] == 'admin'){
 ?>
 
 <!DOCTYPE html>
@@ -403,7 +403,11 @@
 </html>
 
 <?php
-    }else{
+    }
+    elseif(isset($_SESSION['username']) && $_SESSION['level'] == 'warga'){
+        header('Location: ../warga/index.php');
+    }
+    else{
         echo "
             <script>
                 alert('Anda harus login!');

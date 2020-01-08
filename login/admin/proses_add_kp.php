@@ -21,7 +21,7 @@ if(isset($_POST['submit'])) {
 
 	$result = mysqli_query($mysqli, "INSERT INTO penduduk(Nama, Nik, no_kk, Jenis_kelamin, Tanggal_lahir, Agama, Pendidikan, Pekerjaan, Status_perkawinan, Status_hub_kel, Kewarganegaraan, Nama_Ayah, Nama_Ibu, Alamat, level) VALUES ('$nama','$nik','$nokk','$jk','$tgl', '$agama', '$pendidikan','$pekerjaan', '$sp', '$shk', '$kw', '$nayah', '$nibu', '$alamat', '$level')");
 
-	header('location:kependudukan.php');
+	header('location:kependudukan.php?pesan=tambah');
 
 }
 

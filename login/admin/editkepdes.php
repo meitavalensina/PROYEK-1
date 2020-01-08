@@ -11,7 +11,7 @@ if( isset($_SESSION['username']) ){
 
     $query=mysqli_query($mysqli, "UPDATE kepala_desa SET Nip='$nip', Pelatihan='$pelatihan' WHERE id_kepdes='$id_kepdes'");
 
-    header('location:kepaladesa.php');
+    header('location:kepaladesa.php?pesan=update');
 
   }
 

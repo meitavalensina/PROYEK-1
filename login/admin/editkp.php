@@ -5,7 +5,7 @@ include_once("../koneksi.php");
 session_start();
 if( isset($_SESSION['username']) ){
   if (isset($_POST['update'])) {
-    $id_penduduk=$_POST['id_penduduk'];
+    $id=$_POST['id'];
     $nokk=$_POST['nokk'];
     $nama=$_POST['nama'];
     $Nik=$_POST['Nik'];
@@ -21,15 +21,15 @@ if( isset($_SESSION['username']) ){
     $nibu=$_POST['nibu'];
     $alamat=$_POST['alamat'];
 
-    $query=mysqli_query($mysqli, "UPDATE penduduk SET Nama='$nama', Nik='$Nik', no_kk='$nokk', Jenis_kelamin='$jk', Tanggal_lahir='$tgl', Agama='$agama', Pendidikan='$pendidikan', Pekerjaan='$pekerjaan', Status_perkawinan='$sp', Status_hub_kel='$shk', Kewarganegaraan='$kw', Nama_Ayah='$nayah', Nama_Ibu='$nibu', Alamat='$alamat' WHERE id_penduduk='$id_penduduk'");
+    $query=mysqli_query($mysqli, "UPDATE penduduk SET Nama='$nama', Nik='$Nik', no_kk='$nokk', Jenis_kelamin='$jk', Tanggal_lahir='$tgl', Agama='$agama', Pendidikan='$pendidikan', Pekerjaan='$pekerjaan', Status_perkawinan='$sp', Status_hub_kel='$shk', Kewarganegaraan='$kw', Nama_Ayah='$nayah', Nama_Ibu='$nibu', Alamat='$alamat' WHERE Nik='$id'");
 
-    header('location:kependudukan.php');
+    header('location:kependudukan.php?pesan=update');
 
   }
 
-  $id_penduduk=$_GET['id_penduduk'];
+  $id=$_GET['id'];
 
-  $result=mysqli_query($mysqli, "SELECT * FROM penduduk WHERE id_penduduk='$id_penduduk'");
+  $result=mysqli_query($mysqli, "SELECT * FROM penduduk WHERE Nik='$id'");
 
   while($kp = mysqli_fetch_array($result)){
 
@@ -389,7 +389,7 @@ if( isset($_SESSION['username']) ){
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <input type="hidden" name="id_penduduk" value="<?php echo $kp['id_penduduk'];?>">
+                  <input type="hidden" name="id" value="<?php echo $kp['Nik'];?>">
                   <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="update">Edit</button>
                 </div>
               </form>

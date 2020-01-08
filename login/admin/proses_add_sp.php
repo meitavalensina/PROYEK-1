@@ -13,7 +13,7 @@ if(isset($_POST['submit'])) {
 
  	$result=mysqli_query($mysqli, "INSERT INTO sarana_prasarana(Nama, id_katsp, Jumlah) VALUES ('$nama', '$data', $jumlah)");
 
-	header('location:sarpras.php');
+	header('location:sarpras.php?pesan=tambah');
 	
 }
 

@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
 
  	$result1=mysqli_query($mysqli, "INSERT INTO kepala_desa(Nik, Nip, Pelatihan) VALUES ('".$ambil['Nik']."', '$nip', '$pelatihan')");
 
-	header('location:kepaladesa.php');
+	header('location:kepaladesa.php?pesan=tambah');
 
 }
 

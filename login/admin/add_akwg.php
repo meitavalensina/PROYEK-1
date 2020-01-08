@@ -3,30 +3,9 @@
 include_once("../koneksi.php");
 
 session_start();
+if( isset($_SESSION['username']) && $_SESSION['level'] == 'admin'){
 
-if( isset($_SESSION['username']) ){
-  if (isset($_POST['update'])) {
-    $id_strukor=$_POST['id_strukor'];
-    $nama=$_POST['nama'];
-    $jabatan=$_POST['jabatan'];
-    $masaj=$_POST['masaj'];
-
-    $query1=mysqli_query($mysqli, "UPDATE struktur_organisasi_detail SET masa_jabatan='$masaj' WHERE id_strukor='$id_strukor'");
-
-    $query2=mysqli_query($mysqli, "UPDATE struktur_organisasi SET Jabatan='$jabatan' WHERE id_strukor='$id_strukor'");
-
-    header('location:strukorgan.php?pesan=update');
-
-  }
-
-  $id_strukor=$_GET['id_strukor'];
-
-  $result=mysqli_query($mysqli, "SELECT struktur_organisasi_detail.id_strukor, penduduk.Nama, penduduk.Jenis_kelamin, struktur_organisasi.Jabatan, struktur_organisasi_detail.masa_jabatan FROM struktur_organisasi_detail JOIN penduduk ON penduduk.Nik=struktur_organisasi_detail.Nik JOIN struktur_organisasi ON struktur_organisasi_detail.id_strukor=struktur_organisasi.id_strukor WHERE struktur_organisasi_detail.id_strukor='$id_strukor'");
-
-  while($strukor = mysqli_fetch_array($result)){
-  
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -115,8 +94,8 @@ if( isset($_SESSION['username']) ){
               <p style="color: white !important">Kependudukan</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="akunwarga.php" class="nav-link">
+          <li class="nav-item has-treeview menu-open">
+            <a href="akunwarga.php" class="nav-link active" style="background-color: #6D9BBC">
               <i class="nav-icon fas fa-users"></i>
               <p style="color: white !important">Akun Warga</p>
             </a>
@@ -127,8 +106,8 @@ if( isset($_SESSION['username']) ){
               <p style="color: white !important">Kepala Desa</p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="strukorgan.php" class="nav-link active" style="background-color: #6D9BBC">
+          <li class="nav-item has-treeview">
+            <a href="strukorgan.php" class="nav-link">
               <i class="nav-icon fas fa-object-group"></i>
               <p style="color: white !important">Struktur Organisasi</p>
             </a>
@@ -167,8 +146,8 @@ if( isset($_SESSION['username']) ){
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-left">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item"><a href="strukorgan.php">Struktur Organisasi</a></li>
-              <li class="breadcrumb-item active">Edit Struktur Organisasi</li>
+              <li class="breadcrumb-item"><a href="akunwarga.php">Akun Warga</a></li>
+              <li class="breadcrumb-item active">Daftar Akun Warga</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -185,33 +164,29 @@ if( isset($_SESSION['username']) ){
             <!-- jquery validation -->
             <div class="card">
               <div class="card-header" style="background-color: #52748D !important; color: white">
-                <h3 class="card-title">Edit Struktur Organisasi</h3>
+                <h3 class="card-title">Tambah Akun Warga</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" id="quickForm" method="post" action="editstrukor.php">
+              <form role="form" id="quickForm" method="post" action="proses_add_akwg.php">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="IsiNama">Nama</label>
-                    <input type="text" name="nama" class="form-control" id="IsiNama" value="<?php echo $strukor['Nama']; ?>" readonly>
+                    <label for="IsiNama">Nama Lengkap</label>
+                    <input type="text" name="nama" class="form-control" id="IsiNama" placeholder="Masukkan Nama">
                   </div>
                   <div class="form-group">
-                    <label for="IsiJabatan">Jabatan</label>
-                    <input type="text" name="jabatan" class="form-control" id="IsiJabatan" value="<?php echo $strukor['Jabatan'];?>" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="IsiMJ">Masa Jabatan</label>
-                    <input type="text" name="masaj" class="form-control" id="IsiMJ" value="<?php echo $strukor['masa_jabatan'];?>" required>
+                    <label for="IsiNIK">Nik</label>
+                    <input type="text" name="nik" class="form-control" id="IsiNIK" placeholder="Masukkan NIK">
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <input type="hidden" name="id_strukor" value="<?php echo $strukor['id_strukor'];?>">
-                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="update">Edit</button>
+                  <button style="background-color: #52748D !important; color: white" type="submit" class="btn" name="submit">Daftar</button>
                 </div>
-              </form> <?php } ?>
+              </form>
             </div>
             <!-- /.card -->
+            </div>
           <!--/.col (left) -->
           <!-- right column -->
           <div class="col-md-6">

@@ -19,7 +19,7 @@ if(isset($_POST['submit'])) {
 
 	$result2=mysqli_query($mysqli, "INSERT INTO struktur_organisasi (id_strukor, Jabatan) VALUES ('$a', '$jabatan')");
 
-	header('location:strukorgan.php');
+	header('location:strukorgan.php?pesan=tambah');
 
 }
 

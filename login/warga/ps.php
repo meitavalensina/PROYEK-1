@@ -1,7 +1,7 @@
 <?php
     session_start();
     include_once "../koneksi.php";
-    if( isset($_SESSION['username']) ){
+    if( isset($_SESSION['username']) && $_SESSION['level'] == 'warga'){
         include 'kalender/kalender.php';
 
 ?>
@@ -344,7 +344,11 @@
 </html>
 
 <?php
-    }else{
+    }
+    elseif(isset($_SESSION['username']) && $_SESSION['level'] == 'admin'){
+        header('Location: ../admin/index.php');
+    }
+    else{
         echo "
             <script>
                 alert('Anda harus login!');

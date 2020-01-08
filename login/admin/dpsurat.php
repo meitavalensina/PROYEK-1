@@ -4,7 +4,7 @@ include_once("../koneksi.php");
 
 session_start();
 
-if (isset($_SESSION['username'])){
+if( isset($_SESSION['username']) && $_SESSION['level'] == 'admin'){
   if (isset($_POST['Cari'])) {
     $Cari=$_POST['Cari'];
     $result = mysqli_query($mysqli, "SELECT pengajuan_surat.id_ps, penduduk.Nama, penduduk.Nik, penduduk.Tanggal_lahir, penduduk.Jenis_kelamin, pengajuan_surat.tgl_pengajuan_surat, penduduk.Alamat, pengajuan_surat.alasan, pengajuan_surat.status FROM pengajuan_surat JOIN penduduk ON penduduk.Nik=pengajuan_surat.Nik WHERE Nik like '%".$Cari."%' OR Nama like '%".$Cari."%' OR tgl_pengajuan_surat like '%".$Cari."%'");
@@ -342,7 +342,11 @@ if (isset($_SESSION['username'])){
 </html>
 
 <?php
-    }else{
+    }
+    elseif(isset($_SESSION['username']) && $_SESSION['level'] == 'warga'){
+        header('Location: ../warga/index.php');
+    }
+    else{
         echo "
             <script>
                 alert('Anda harus login!');

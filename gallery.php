@@ -12,7 +12,7 @@
     <title>Sistem Informasi Desa Ujungaris</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" type="image/png" href="login/favicon.ico">
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="style.css">
